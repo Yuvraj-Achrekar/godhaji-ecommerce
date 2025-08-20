@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -19,8 +19,29 @@ const DesktopNavbar = ({
 	iconLinks: IconLink[];
 	ProductLinks: ProductLink[];
 }) => {
+	const [show, setShow] = useState(true);
+	const [lastScrollY, setLastScrollY] = useState(0);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > lastScrollY) {
+				// scrolling down
+				setShow(false);
+			} else {
+				// scrolling up
+				setShow(true);
+			}
+			setLastScrollY(window.scrollY);
+		};
+
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, [lastScrollY]);
 	return (
-		<div className="flex justify-between p-2 max-w-7xl mx-auto items-center">
+		<div
+			className={`flex justify-between p-2 max-w-7xl mx-auto items-center ${
+				show ? "translate-y-0" : "-translate-y-full duration-300"
+			}`}>
 			<div>
 				<Link href={"/"}>Logo</Link>
 			</div>
@@ -30,7 +51,9 @@ const DesktopNavbar = ({
 						{navLinks.map(({ href, label }) =>
 							label === "Shop" ? (
 								<NavigationMenuItem key={href + label}>
-									<NavigationMenuTrigger>{label}</NavigationMenuTrigger>
+									<NavigationMenuTrigger className="bg-transparent">
+										{label}
+									</NavigationMenuTrigger>
 									<NavigationMenuContent>
 										<ul className="grid gap-2 grid-cols-2 lg:w-[300px] xl:w-[350px]">
 											<ProductLinkItem title="Product 1" href="/products/1">

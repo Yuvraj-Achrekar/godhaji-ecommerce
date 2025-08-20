@@ -3,8 +3,8 @@ import { Menu, MoveRight, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { IconLink, NavLink } from "./navbar";
-import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
+import { Toggle } from "../ui/toggle";
 
 const MobileNavbar = ({
 	iconLinks,
@@ -18,11 +18,12 @@ const MobileNavbar = ({
 	return (
 		<>
 			<div className="flex bg-white justify-between h-[10vh] items-center px-2 shadow-sm">
-				<Button
-					variant={"outline"}
+				<Toggle
+					variant="outline"
+					aria-label="Toggle italic"
 					onClick={() => setToogleNavbar(!toogleNavbar)}>
 					{toogleNavbar ? <X /> : <Menu />}
-				</Button>
+				</Toggle>
 				<div>
 					<Link href={"/"}>Logo</Link>
 				</div>

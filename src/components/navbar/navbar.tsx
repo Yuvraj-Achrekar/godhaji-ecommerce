@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CircleUser, Search, ShoppingCart } from "lucide-react";
 import DesktopNavbar from "./desktopNavbar";
 import MobileNavbar from "./mobileNavbar";
@@ -55,8 +55,9 @@ const products: ProductLink[] = [
 
 const Navbar = () => {
 	const pathname = usePathname();
+
 	return (
-		<nav className="sticky top-0 right-0 left-0 ">
+		<nav className="fixed top-0 w-full">
 			<div className="hidden lg:block">
 				<DesktopNavbar
 					navLinks={navLinks}
