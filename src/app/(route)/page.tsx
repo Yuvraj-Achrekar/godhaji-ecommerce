@@ -1,11 +1,11 @@
-import HeroSection from "@/components/heroSection";
-import { Button } from "@/components/ui/button";
-import React from "react";
+import HeroSection from "@/components/home/heroSection";
+import ShopByCategory from "@/components/home/shopByCategory";
 
 const HomePage = () => {
 	return (
 		<div>
 			<HeroSection />
+			<ShopByCategory />
 			<div>Test</div>
 		</div>
 	);
