@@ -57,7 +57,7 @@ const Navbar = () => {
 	const pathname = usePathname();
 
 	return (
-		<nav className="fixed top-0 w-full">
+		<nav className="fixed top-0 w-full z-[1000]">
 			<div className="hidden lg:block">
 				<DesktopNavbar
 					navLinks={navLinks}
