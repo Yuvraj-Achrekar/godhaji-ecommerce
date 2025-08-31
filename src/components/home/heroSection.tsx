@@ -1,7 +1,26 @@
+"use client";
 import React from "react";
 import { Button } from "../ui/button";
+import { createSupabaseClient } from "@/lib/supabase/client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const HeroSection = () => {
+	const router = useRouter();
+	const supabaseSignout = async () => {
+		const supabase = createSupabaseClient();
+		const { error } = await supabase.auth.signOut();
+		if (error) {
+			console.log("error", error);
+
+			return toast.error(error.message);
+		}
+		console.log("Success");
+
+		toast.success("Signed out successfully");
+		router.refresh();
+	};
+
 	return (
 		<section className="custom-container bg-[#D9D9D9] ">
 			{/* bg-[url('/hero-bg.jpg')] bg-cover bg-center  */}
@@ -15,7 +34,7 @@ const HeroSection = () => {
 							Grandma Made!
 						</h3>
 					</div>
-					<Button>Shop Now</Button>
+					<Button onClick={supabaseSignout}>Shop Now</Button>
 				</div>
 			</div>
 		</section>

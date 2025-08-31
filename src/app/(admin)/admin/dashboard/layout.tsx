@@ -13,6 +13,7 @@ import {
 	SidebarProvider,
 	SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { DASHBOARD_HOME } from "@/routes/adminRoutes";
 
 export default function AdminDashboardLayout({
 	children,
@@ -34,8 +35,8 @@ export default function AdminDashboardLayout({
 							<Breadcrumb>
 								<BreadcrumbList>
 									<BreadcrumbItem className="hidden md:block">
-										<BreadcrumbLink href="#">
-											Building Your Application
+										<BreadcrumbLink href={DASHBOARD_HOME}>
+											Dashboard
 										</BreadcrumbLink>
 									</BreadcrumbItem>
 									<BreadcrumbSeparator className="hidden md:block" />
@@ -46,7 +47,7 @@ export default function AdminDashboardLayout({
 							</Breadcrumb>
 						</div>
 					</header>
-					{children}
+					<div className="p-4 pt-0">{children}</div>
 				</main>
 			</SidebarInset>
 		</SidebarProvider>

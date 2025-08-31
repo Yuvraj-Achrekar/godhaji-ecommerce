@@ -3,15 +3,11 @@
 import * as React from "react";
 import {
 	AudioWaveform,
-	BookOpen,
-	Bot,
 	Command,
 	Frame,
 	GalleryVerticalEnd,
 	Map,
 	PieChart,
-	Settings2,
-	SquareTerminal,
 	Calendar,
 	Home,
 	Inbox,
@@ -30,6 +26,20 @@ import {
 	SidebarHeader,
 	SidebarRail,
 } from "@/components/ui/sidebar";
+import {
+	DASHBOARD_ADD_CATEGORY,
+	DASHBOARD_ADD_COUPONS,
+	DASHBOARD_ADD_PRODUCTS,
+	DASHBOARD_ADD_VARIANTS,
+	DASHBOARD_ALL_CATEGORY,
+	DASHBOARD_ALL_COUPONS,
+	DASHBOARD_ALL_PRODUCTS,
+	DASHBOARD_ALL_VARIANTS,
+	DASHBOARD_CUSTOMERS,
+	DASHBOARD_HOME,
+	DASHBOARD_ORDERS,
+	DASHBOARD_REVIEWS,
+} from "@/routes/adminRoutes";
 
 // This is sample data.
 const data = {
@@ -58,7 +68,7 @@ const data = {
 	navMain: [
 		{
 			title: "Dashboard",
-			url: "#",
+			url: DASHBOARD_HOME,
 			icon: Home,
 			isActive: true,
 		},
@@ -69,11 +79,12 @@ const data = {
 			items: [
 				{
 					title: "Add Category",
-					url: "#",
+					url: DASHBOARD_ADD_CATEGORY,
 				},
 				{
 					title: "Manage Categories",
-					url: "#",
+					url: DASHBOARD_ALL_CATEGORY,
+					isActive: true,
 				},
 			],
 		},
@@ -84,19 +95,19 @@ const data = {
 			items: [
 				{
 					title: "Add Product",
-					url: "#",
+					url: DASHBOARD_ADD_PRODUCTS,
 				},
 				{
 					title: "Add Variant",
-					url: "#",
+					url: DASHBOARD_ADD_VARIANTS,
 				},
 				{
 					title: "All Products",
-					url: "#",
+					url: DASHBOARD_ALL_PRODUCTS,
 				},
 				{
 					title: "All Variant",
-					url: "#",
+					url: DASHBOARD_ALL_VARIANTS,
 				},
 			],
 		},
@@ -107,27 +118,27 @@ const data = {
 			items: [
 				{
 					title: "Add Coupon",
-					url: "#",
+					url: DASHBOARD_ADD_COUPONS,
 				},
 				{
 					title: "Manage Coupons",
-					url: "#",
+					url: DASHBOARD_ALL_COUPONS,
 				},
 			],
 		},
 		{
 			title: "Orders",
-			url: "#",
+			url: DASHBOARD_ORDERS,
 			icon: Settings,
 		},
 		{
 			title: "Customers",
-			url: "#",
+			url: DASHBOARD_CUSTOMERS,
 			icon: Settings,
 		},
 		{
 			title: "Reviews & Ratings",
-			url: "#",
+			url: DASHBOARD_REVIEWS,
 			icon: Settings,
 		},
 	],
