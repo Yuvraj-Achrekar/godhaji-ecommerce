@@ -6,17 +6,37 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { createSupabaseClient } from "@/lib/supabase/client";
+import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
 import { sendMagicLink } from "@/actions/auth";
+
+export type MagicLinkResponse = {
+	success: boolean;
+	message?: string;
+	error?: boolean;
+};
 
 export function LoginForm({
 	className,
 	...props
 }: React.ComponentProps<"div">) {
-	const [email, setEmail] = useState<string>("");
+	const [state, formAction, isPending] = useActionState<
+		Promise<{ success: boolean; message?: string; error?: string }>,
+		FormData
+	>(
+		sendMagicLink,
+		{ success: false } // or your initial state
+	);
 	const router = useRouter();
+
+	useEffect(() => {
+		if (state.success) {
+			toast.success(state.message);
+		}
+		if (state.error) {
+			toast.error(state.error);
+		}
+	}, [state]);
 
 	// async function sendMagicLink(e: React.FormEvent) {
 	// 	e.preventDefault();
@@ -40,7 +60,7 @@ export function LoginForm({
 
 	return (
 		<div className={cn("flex flex-col gap-6", className)} {...props}>
-			<form action={sendMagicLink}>
+			<form action={formAction}>
 				<div className="flex flex-col gap-6">
 					<div className="flex flex-col items-center gap-2 relative">
 						<a
@@ -70,8 +90,6 @@ export function LoginForm({
 								id="email"
 								name="email"
 								type="email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
 								placeholder="m@example.com"
 								required
 							/>

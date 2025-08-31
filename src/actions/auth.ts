@@ -2,7 +2,10 @@
 
 import { createSupabaseServer } from "@/lib/supabase/server";
 
-export async function sendMagicLink(formData: FormData): Promise<void> {
+export async function sendMagicLink(
+	prevState: {},
+	formData: FormData
+): Promise<{ success: boolean; message?: string; error?: string }> {
 	const supabase = await createSupabaseServer();
 	const email = formData.get("email") as string;
 	console.log(email);
@@ -12,10 +15,8 @@ export async function sendMagicLink(formData: FormData): Promise<void> {
 	});
 
 	if (error) {
-		console.log("error message", error.message);
-		return;
+		return { success: false, error: error.message };
 	}
 
-	console.log(`Magic link sent to your email ${email}`);
-	return;
+	return { success: true, message: `Login link sent to your email ${email}` };
 }

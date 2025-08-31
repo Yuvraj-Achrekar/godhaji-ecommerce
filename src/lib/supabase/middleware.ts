@@ -38,7 +38,7 @@ export async function updateSession(request: NextRequest) {
 		data: { user },
 	} = await supabase.auth.getUser();
 
-	if (user && request.nextUrl.pathname === "/auth/login") {
+	if (user && request.nextUrl.pathname.startsWith("/auth")) {
 		// already logged in, redirect away from login page
 		return NextResponse.redirect(new URL("/profile", request.url));
 	}
@@ -62,6 +62,7 @@ export async function updateSession(request: NextRequest) {
 			.select("role")
 			.eq("id", user?.id)
 			.single();
+		console.log("profile", profile);
 
 		if (profile?.role !== "admin") {
 			return NextResponse.redirect(new URL("/unauthorized", request.url));
