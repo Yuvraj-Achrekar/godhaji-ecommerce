@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { CircleUser, Search, ShoppingCart } from "lucide-react";
 import DesktopNavbar from "./desktopNavbar";
 import MobileNavbar from "./mobileNavbar";
-import { useAuth } from "@/context/authProvider";
+import { useAuth } from "@/providers/authProvider";
 
 export type NavLink = {
 	href: string;

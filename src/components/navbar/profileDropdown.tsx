@@ -11,6 +11,7 @@ import { CircleUser } from "lucide-react";
 import { createSupabaseClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const ProfileDropdown = () => {
 	const router = useRouter();

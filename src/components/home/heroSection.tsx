@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "../ui/button";
-import { useAuth } from "@/context/authProvider";
+import { useAuth } from "@/providers/authProvider";
 
 const HeroSection = () => {
 	const { user } = useAuth();
