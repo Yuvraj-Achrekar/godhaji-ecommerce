@@ -9,15 +9,20 @@ import {
 } from "../ui/navigation-menu";
 import Link from "next/link";
 import { IconLink, NavLink, ProductLink } from "./navbar";
+import ProfileDropdown from "./profileDropdown";
+import { User } from "@supabase/supabase-js";
+import { CircleUser } from "lucide-react";
 
 const DesktopNavbar = ({
 	navLinks,
 	iconLinks,
 	ProductLinks,
+	user,
 }: {
 	navLinks: NavLink[];
 	iconLinks: IconLink[];
 	ProductLinks: ProductLink[];
+	user: User | null;
 }) => {
 	const [show, setShow] = useState(true);
 	const [lastScrollY, setLastScrollY] = useState(0);
@@ -83,6 +88,14 @@ const DesktopNavbar = ({
 								</NavigationMenuLink>
 							</NavigationMenuItem>
 						))}
+
+						{user ? (
+							<ProfileDropdown />
+						) : (
+							<Link href={"/auth/login"}>
+								<CircleUser />
+							</Link>
+						)}
 					</NavigationMenuList>
 				</NavigationMenu>
 			</div>

@@ -8,7 +8,6 @@ export async function sendMagicLink(
 ): Promise<{ success: boolean; message?: string; error?: string }> {
 	const supabase = await createSupabaseServer();
 	const email = formData.get("email") as string;
-	console.log(email);
 
 	const { data, error } = await supabase.auth.signInWithOtp({
 		email,

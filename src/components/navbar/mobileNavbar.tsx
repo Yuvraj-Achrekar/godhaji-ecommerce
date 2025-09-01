@@ -1,17 +1,29 @@
 "use client";
-import { Menu, MoveRight, X } from "lucide-react";
+import { CircleUser, Menu, MoveRight, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { IconLink, NavLink } from "./navbar";
 import { useRouter } from "next/navigation";
 import { Toggle } from "../ui/toggle";
+import { User } from "@supabase/supabase-js";
+import ProfileDropdown from "./profileDropdown";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 const MobileNavbar = ({
 	iconLinks,
 	navLinks,
+	user,
 }: {
 	iconLinks: IconLink[];
 	navLinks: NavLink[];
+	user: User | null;
 }) => {
 	const router = useRouter();
 	const [toogleNavbar, setToogleNavbar] = useState<boolean>(false);
@@ -33,6 +45,13 @@ const MobileNavbar = ({
 							{icon}
 						</Link>
 					))}
+					{user ? (
+						<ProfileDropdown />
+					) : (
+						<Link href={"/auth/login"}>
+							<CircleUser />
+						</Link>
+					)}
 				</div>
 			</div>
 			{toogleNavbar && (

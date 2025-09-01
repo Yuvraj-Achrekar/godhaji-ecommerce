@@ -59,12 +59,11 @@ export async function updateSession(request: NextRequest) {
 	if (request.nextUrl.pathname.startsWith("/admin")) {
 		const { data: profile } = await supabase
 			.from("profiles")
-			.select("role")
+			.select("user_role")
 			.eq("id", user?.id)
 			.single();
-		console.log("profile", profile);
 
-		if (profile?.role !== "admin") {
+		if (profile?.user_role !== "admin") {
 			return NextResponse.redirect(new URL("/unauthorized", request.url));
 		}
 	}

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { CircleUser, Search, ShoppingCart } from "lucide-react";
 import DesktopNavbar from "./desktopNavbar";
 import MobileNavbar from "./mobileNavbar";
+import { useAuth } from "@/context/authProvider";
 
 export type NavLink = {
 	href: string;
@@ -32,7 +33,7 @@ const navLinks: NavLink[] = [
 const iconLinks: IconLink[] = [
 	{ href: "/cart", icon: <Search key="search" /> },
 	{ href: "/cart", icon: <ShoppingCart key="cart" /> },
-	{ href: "/auth/login", icon: <CircleUser key="user" /> },
+	// { href: "/auth/login", icon: <CircleUser key="user" /> },
 ];
 
 const products: ProductLink[] = [
@@ -55,6 +56,7 @@ const products: ProductLink[] = [
 
 const Navbar = () => {
 	const pathname = usePathname();
+	const { user } = useAuth();
 
 	return (
 		<nav className="fixed top-0 w-full z-[1000]">
@@ -63,10 +65,11 @@ const Navbar = () => {
 					navLinks={navLinks}
 					iconLinks={iconLinks}
 					ProductLinks={products}
+					user={user}
 				/>
 			</div>
 			<div className="lg:hidden">
-				<MobileNavbar iconLinks={iconLinks} navLinks={navLinks} />
+				<MobileNavbar iconLinks={iconLinks} navLinks={navLinks} user={user} />
 			</div>
 		</nav>
 	);

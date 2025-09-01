@@ -38,26 +38,6 @@ export function LoginForm({
 		}
 	}, [state]);
 
-	// async function sendMagicLink(e: React.FormEvent) {
-	// 	e.preventDefault();
-	// 	try {
-	// 		const supabase = createSupabaseClient();
-	// 		const { data, error } = await supabase.auth.signInWithOtp({
-	// 			email,
-	// 			options: {
-	// 				shouldCreateUser: true,
-	// 				emailRedirectTo: "http://localhost:3000/",
-	// 			},
-	// 		});
-	// 		if (data) {
-	// 			toast.success(`Magic link sent to your email ${email}`);
-	// 			setEmail("");
-	// 		}
-	// 	} catch (error) {
-	// 		console.log("Error sending magic link", error);
-	// 	}
-	// }
-
 	return (
 		<div className={cn("flex flex-col gap-6", className)} {...props}>
 			<form action={formAction}>
@@ -94,8 +74,8 @@ export function LoginForm({
 								required
 							/>
 						</div>
-						<Button type="submit" className="w-full">
-							Login
+						<Button type="submit" className="w-full" disabled={isPending}>
+							{isPending ? "Loading..." : "Login"}
 						</Button>
 					</div>
 					<div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
