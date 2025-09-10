@@ -1,11 +1,12 @@
 "use client";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CircleUser, Search, ShoppingCart } from "lucide-react";
 import DesktopNavbar from "./desktopNavbar";
 import MobileNavbar from "./mobileNavbar";
 import { useAuth } from "@/providers/authProvider";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { createSupabaseClient } from "@/lib/supabase/client";
+import { useUserData } from "@/hooks/useUserData";
 
 export type NavLink = {
 	href: string;
@@ -55,8 +56,8 @@ const products: ProductLink[] = [
 ];
 
 const Navbar = () => {
-	const pathname = usePathname();
-	const { user } = useAuth();
+	const { user, loading } = useAuth();
+	const { data: userData, isLoading, error, refetch } = useUserData(user?.id);
 
 	return (
 		<nav className="fixed top-0 w-full z-[1000]">
@@ -65,11 +66,17 @@ const Navbar = () => {
 					navLinks={navLinks}
 					iconLinks={iconLinks}
 					ProductLinks={products}
-					user={user}
+					user={userData}
+					loading={loading}
 				/>
 			</div>
 			<div className="lg:hidden">
-				<MobileNavbar iconLinks={iconLinks} navLinks={navLinks} user={user} />
+				<MobileNavbar
+					iconLinks={iconLinks}
+					navLinks={navLinks}
+					user={userData}
+					loading={loading}
+				/>
 			</div>
 		</nav>
 	);

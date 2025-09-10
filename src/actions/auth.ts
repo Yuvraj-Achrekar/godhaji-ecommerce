@@ -19,3 +19,5 @@ export async function sendMagicLink(
 
 	return { success: true, message: `Login link sent to your email ${email}` };
 }
+
+export async function googleLogin() {}

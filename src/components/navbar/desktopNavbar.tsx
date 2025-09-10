@@ -10,20 +10,26 @@ import {
 import Link from "next/link";
 import { IconLink, NavLink, ProductLink } from "./navbar";
 import ProfileDropdown from "./profileDropdown";
-import { User } from "@supabase/supabase-js";
-import { CircleUser } from "lucide-react";
+import { CircleUser, Loader, User } from "lucide-react";
+import { UserProfile } from "@/types/auth";
+import { Avatar, AvatarFallback } from "../ui/avatar";
+import Image from "next/image";
+
+type DesktopNavbarProps = {
+	navLinks: NavLink[];
+	iconLinks: IconLink[];
+	ProductLinks: ProductLink[];
+	user: UserProfile | undefined;
+	loading: boolean;
+};
 
 const DesktopNavbar = ({
 	navLinks,
 	iconLinks,
 	ProductLinks,
 	user,
-}: {
-	navLinks: NavLink[];
-	iconLinks: IconLink[];
-	ProductLinks: ProductLink[];
-	user: User | null;
-}) => {
+	loading,
+}: DesktopNavbarProps) => {
 	const [show, setShow] = useState(true);
 	const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -44,11 +50,18 @@ const DesktopNavbar = ({
 	}, [lastScrollY]);
 	return (
 		<div
-			className={`flex justify-between p-2 max-w-7xl mx-auto items-center ${
+			className={`flex justify-between p-2 max-w-7xl mx-auto items-center h-14 ${
 				show ? "translate-y-0" : "-translate-y-full duration-300"
 			}`}>
 			<div>
-				<Link href={"/"}>Logo</Link>
+				<Link href={"/"}>
+					<Image
+						src={"/assets/logo/logo-main-brown.svg"}
+						height={200}
+						width={200}
+						alt="Logo-Main"
+					/>
+				</Link>
 			</div>
 			<div>
 				<NavigationMenu>
@@ -89,13 +102,18 @@ const DesktopNavbar = ({
 							</NavigationMenuItem>
 						))}
 
-						{user ? (
-							<ProfileDropdown />
-						) : (
-							<Link href={"/auth/login"}>
-								<CircleUser />
-							</Link>
-						)}
+						{
+							// 	loading ? (
+							// 	<Loader />
+							// ) :
+							user ? (
+								<ProfileDropdown user={user} />
+							) : (
+								<Link href={"/auth/login"}>
+									<CircleUser size={30} />
+								</Link>
+							)
+						}
 					</NavigationMenuList>
 				</NavigationMenu>
 			</div>

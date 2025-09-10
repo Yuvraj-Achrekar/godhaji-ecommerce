@@ -21,16 +21,19 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		setLoading(true);
 		createSupabaseClient()
 			.auth.getSession()
 			.then(({ data }) => {
 				setUser(data.session?.user ?? null);
 				setLoading(false);
-			});
+			})
+			.finally(() => setLoading(false));
 
 		const { data: listener } = createSupabaseClient().auth.onAuthStateChange(
 			(_event, session) => {
 				setUser(session?.user ?? null);
+				setLoading(false);
 			}
 		);
 

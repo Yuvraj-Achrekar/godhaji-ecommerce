@@ -1,11 +1,10 @@
 "use client";
-import { CircleUser, Menu, MoveRight, X } from "lucide-react";
+import { CircleUser, Loader, Menu, MoveRight, X } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
 import { IconLink, NavLink } from "./navbar";
 import { useRouter } from "next/navigation";
 import { Toggle } from "../ui/toggle";
-import { User } from "@supabase/supabase-js";
 import ProfileDropdown from "./profileDropdown";
 import {
 	DropdownMenu,
@@ -15,16 +14,22 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { UserProfile } from "@/types/auth";
+import Image from "next/image";
+
+type MobileNavbarProps = {
+	iconLinks: IconLink[];
+	navLinks: NavLink[];
+	user: UserProfile | undefined;
+	loading: boolean;
+};
 
 const MobileNavbar = ({
 	iconLinks,
 	navLinks,
 	user,
-}: {
-	iconLinks: IconLink[];
-	navLinks: NavLink[];
-	user: User | null;
-}) => {
+	loading,
+}: MobileNavbarProps) => {
 	const router = useRouter();
 	const [toogleNavbar, setToogleNavbar] = useState<boolean>(false);
 	return (
@@ -37,21 +42,33 @@ const MobileNavbar = ({
 					{toogleNavbar ? <X /> : <Menu />}
 				</Toggle>
 				<div>
-					<Link href={"/"}>Logo</Link>
+					<Link href={"/"}>
+						<Image
+							src={"/assets/logo/logo-main-brown.svg"}
+							height={180}
+							width={180}
+							alt="Logo-Main"
+						/>
+					</Link>
 				</div>
-				<div className="flex space-x-4">
+				<div className="flex items-center space-x-4">
 					{iconLinks.map(({ icon, href }, index) => (
 						<Link key={href + index} href={href}>
 							{icon}
 						</Link>
 					))}
-					{user ? (
-						<ProfileDropdown />
-					) : (
-						<Link href={"/auth/login"}>
-							<CircleUser />
-						</Link>
-					)}
+					{
+						// 	loading ? (
+						// 	<Loader />
+						// ) :
+						user ? (
+							<ProfileDropdown user={user} />
+						) : (
+							<Link href={"/auth/login"}>
+								<CircleUser size={30} />
+							</Link>
+						)
+					}
 				</div>
 			</div>
 			{toogleNavbar && (

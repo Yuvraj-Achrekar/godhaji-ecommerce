@@ -12,8 +12,13 @@ import { createSupabaseClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { UserProfile } from "@/types/auth";
 
-const ProfileDropdown = () => {
+type ProfileDropdownProps = {
+	user: UserProfile | null;
+};
+
+const ProfileDropdown = ({ user }: ProfileDropdownProps) => {
 	const router = useRouter();
 
 	const supabaseSignout = async () => {
@@ -28,9 +33,12 @@ const ProfileDropdown = () => {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Link href={""}>
-					<CircleUser />
-				</Link>
+				<Avatar>
+					<AvatarImage src={user?.avatar_url} />
+					<AvatarFallback color="blue">
+						{user?.email?.slice(0, 2).toLocaleUpperCase()}
+					</AvatarFallback>
+				</Avatar>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent className="w-24 z-[1000]">
 				{/* <DropdownMenuLabel>Appearance</DropdownMenuLabel> */}
