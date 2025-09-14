@@ -1,7 +1,12 @@
+import CountOverview from "@/components/admin/dashboard/countOverview";
 import React from "react";
 
 const AdminHome = () => {
-	return <div>AdminHome</div>;
+	return (
+		<div>
+			<CountOverview />
+		</div>
+	);
 };
 
 export default AdminHome;

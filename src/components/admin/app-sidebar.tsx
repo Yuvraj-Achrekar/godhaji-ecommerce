@@ -50,18 +50,18 @@ const data = {
 	},
 	teams: [
 		{
-			name: "Acme Inc",
-			logo: GalleryVerticalEnd,
+			name: "Godhaji",
+			logo: "/assets/logo/logo-favicon-white.svg",
 			plan: "Enterprise",
 		},
 		{
 			name: "Acme Corp.",
-			logo: AudioWaveform,
+			logo: "/assets/logo/logo-favicon-white.svg",
 			plan: "Startup",
 		},
 		{
 			name: "Evil Corp.",
-			logo: Command,
+			logo: "/assets/logo/logo-favicon-white.svg",
 			plan: "Free",
 		},
 	],
