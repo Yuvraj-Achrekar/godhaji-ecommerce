@@ -1,6 +1,6 @@
 import { AppSidebar } from "@/components/admin/app-sidebar";
+import Breadcrumbs from "@/components/breadcrumbs";
 import {
-	Breadcrumb,
 	BreadcrumbItem,
 	BreadcrumbLink,
 	BreadcrumbList,
@@ -32,7 +32,9 @@ export default function AdminDashboardLayout({
 								orientation="vertical"
 								className="mr-2 data-[orientation=vertical]:h-4"
 							/>
-							<Breadcrumb>
+							<Breadcrumbs />
+							{/* <Breadcrumbs /> */}
+							{/* <Breadcrumb>
 								<BreadcrumbList>
 									<BreadcrumbItem className="hidden md:block">
 										<BreadcrumbLink href={DASHBOARD_HOME}>
@@ -44,7 +46,7 @@ export default function AdminDashboardLayout({
 										<BreadcrumbPage>Data Fetching</BreadcrumbPage>
 									</BreadcrumbItem>
 								</BreadcrumbList>
-							</Breadcrumb>
+							</Breadcrumb> */}
 						</div>
 					</header>
 					<div className="p-4 pt-0">{children}</div>
