@@ -1,10 +1,19 @@
 import CountOverview from "@/components/admin/dashboard/countOverview";
-import React from "react";
+import OrderChart from "@/components/admin/dashboard/orderChart";
+import OrderSummary from "@/components/admin/dashboard/orderSummary";
 
 const AdminHome = () => {
 	return (
 		<div>
 			<CountOverview />
+			<div className="container mt-8 flex flex-col md:flex-row gap-4">
+				<div className="w-full md:w-[60%]">
+					<OrderChart />
+				</div>
+				<div className="w-full md:w-[40%]">
+					<OrderSummary />
+				</div>
+			</div>
 		</div>
 	);
 };

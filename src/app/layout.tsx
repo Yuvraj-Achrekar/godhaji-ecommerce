@@ -21,7 +21,6 @@ export const metadata: Metadata = {
 	icons: {
 		icon: [
 			{ url: "/favicon.svg", type: "image/svg+xml" },
-			// fallback for Safari and older browsers
 			{ url: "/favicon.png", type: "image/png" },
 		],
 	},

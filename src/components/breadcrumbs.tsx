@@ -10,11 +10,7 @@ import {
 import { breadcrumbsRoutes } from "@/lib/helpers";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-type BreadcrumbProps = {
-	title: string;
-	href: string;
-};
+import { Fragment } from "react";
 
 const Breadcrumbs = () => {
 	const pathname = usePathname();
@@ -26,10 +22,10 @@ const Breadcrumbs = () => {
 					const isLast = index === routes.length - 1;
 
 					return (
-						<>
+						<Fragment key={route.title + route.href}>
 							{!isLast ? (
 								<>
-									<BreadcrumbItem key={route.title + route.href}>
+									<BreadcrumbItem>
 										<BreadcrumbLink asChild>
 											<Link href={route.href}>{route.title}</Link>
 										</BreadcrumbLink>
@@ -37,20 +33,13 @@ const Breadcrumbs = () => {
 									<BreadcrumbSeparator />
 								</>
 							) : (
-								<BreadcrumbItem key={route.title + route.href}>
+								<BreadcrumbItem>
 									<BreadcrumbPage>{route.title}</BreadcrumbPage>
 								</BreadcrumbItem>
 							)}
-						</>
+						</Fragment>
 					);
 				})}
-				{/* <BreadcrumbItem className="hidden md:block">
-					<BreadcrumbLink href={DASHBOARD_HOME}>Dashboard</BreadcrumbLink>
-				</BreadcrumbItem>
-				<BreadcrumbSeparator className="hidden md:block" />
-				<BreadcrumbItem>
-					<BreadcrumbPage>Data Fetching</BreadcrumbPage>
-				</BreadcrumbItem> */}
 			</BreadcrumbList>
 		</Breadcrumb>
 	);
