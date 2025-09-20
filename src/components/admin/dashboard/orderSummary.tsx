@@ -13,30 +13,46 @@ import {
 	ChartTooltipContent,
 } from "@/components/ui/chart";
 import { useMemo } from "react";
-import { Label, Legend, Pie, PieChart } from "recharts";
+import {
+	DefaultLegendContentProps,
+	Label,
+	Legend,
+	Pie,
+	PieChart,
+} from "recharts";
 
 const chartData = [
-	{ browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-	{ browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-	{ browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-	{ browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-	{ browser: "other", visitors: 190, fill: "var(--color-other)" },
+	{ status: "chrome", orders: 275, fill: "var(--color-chrome)" },
+	{ status: "safari", orders: 200, fill: "var(--color-safari)" },
+	{ status: "firefox", orders: 287, fill: "var(--color-firefox)" },
+	{ status: "edge", orders: 173, fill: "var(--color-edge)" },
+	{ status: "other", orders: 190, fill: "var(--color-other)" },
 ];
 
-const renderLegend = (props: any) => {
+const renderLegend = (props: DefaultLegendContentProps) => {
 	const { payload } = props;
+	if (!payload) return null;
 
 	return (
 		<ul>
 			{payload.map((entry, index) => (
-				<li key={`item-${index}`}>{entry.value}</li>
+				<li
+					key={`item-${index}`}
+					className="flex justify-between items-center text-base">
+					{entry.value}
+					<span
+						className="rounded-full p-1 mb-1 text-white"
+						style={{ backgroundColor: entry.color }}>
+						{entry.payload?.value}
+					</span>
+				</li>
 			))}
 		</ul>
 	);
 };
 const chartConfig = {
-	visitors: {
-		label: "Visitors",
+	orders: {
+		label: "Orders",
 	},
 	chrome: {
 		label: "Chrome",
@@ -61,19 +77,17 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 const OrderSummary = () => {
-	const totalVisitors = useMemo(() => {
-		return chartData.reduce((acc, curr) => acc + curr.visitors, 0);
+	const totalOrders = useMemo(() => {
+		return chartData.reduce((acc, curr) => acc + curr.orders, 0);
 	}, []);
 	return (
 		<Card className="h-full flex flex-col">
 			<CardHeader className="items-center pb-0">
-				<CardTitle>Pie Chart - Donut with Text</CardTitle>
-				<CardDescription>January - June 2024</CardDescription>
+				<CardTitle>Order Summary</CardTitle>
+				{/* <CardDescription>January - June 2024</CardDescription> */}
 			</CardHeader>
 			<CardContent className="flex-1 pb-0">
-				<ChartContainer
-					config={chartConfig}
-					className="mx-auto aspect-square max-h-[250px]">
+				<ChartContainer config={chartConfig} className="mx-auto h-full w-full">
 					<PieChart>
 						<ChartTooltip
 							cursor={false}
@@ -81,10 +95,10 @@ const OrderSummary = () => {
 						/>
 						<Pie
 							data={chartData}
-							dataKey="visitors"
-							nameKey="browser"
+							dataKey="orders"
+							nameKey="status"
 							innerRadius={60}
-							strokeWidth={5}>
+							strokeWidth={50}>
 							<Label
 								content={({ viewBox }) => {
 									if (viewBox && "cx" in viewBox && "cy" in viewBox) {
@@ -98,13 +112,13 @@ const OrderSummary = () => {
 													x={viewBox.cx}
 													y={viewBox.cy}
 													className="fill-foreground text-3xl font-bold">
-													{totalVisitors.toLocaleString()}
+													{totalOrders.toLocaleString()}
 												</tspan>
 												<tspan
 													x={viewBox.cx}
 													y={(viewBox.cy || 0) + 24}
 													className="fill-muted-foreground">
-													Visitors
+													Orders Status
 												</tspan>
 											</text>
 										);

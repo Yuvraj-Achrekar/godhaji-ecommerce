@@ -20,12 +20,12 @@ const chartConfig = {
 } satisfies ChartConfig;
 
 const chartData = [
-	{ month: "January", desktop: 186, mobile: 80 },
-	{ month: "February", desktop: 305, mobile: 200 },
-	{ month: "March", desktop: 237, mobile: 120 },
-	{ month: "April", desktop: 73, mobile: 190 },
-	{ month: "May", desktop: 209, mobile: 130 },
-	{ month: "June", desktop: 214, mobile: 140 },
+	{ month: "January", orders: 186 },
+	{ month: "February", orders: 305 },
+	{ month: "March", orders: 237 },
+	{ month: "April", orders: 73 },
+	{ month: "May", orders: 209 },
+	{ month: "June", orders: 214 },
 ];
 const OrderChart = () => {
 	return (
@@ -54,7 +54,7 @@ const OrderChart = () => {
 							cursor={false}
 							content={<ChartTooltipContent hideLabel />}
 						/>
-						<Bar dataKey="desktop" fill="var(--color-desktop)" radius={8} />
+						<Bar dataKey="orders" fill="var(--color-desktop)" radius={8} />
 					</BarChart>
 				</ChartContainer>
 			</CardContent>
