@@ -13,6 +13,11 @@ export const breadcrumbsRoutes = (route: string) => {
 				{ title: "Products", href: "/admin/dashboard/products" },
 				{ title: "add", href: "/admin/dashboard/products/add" },
 			];
+		case "/admin/dashboard/customers":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Customers", href: "/admin/dashboard/customers" },
+			]
 		default:
 			return [
 				{

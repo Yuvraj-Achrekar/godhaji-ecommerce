@@ -1,8 +1,8 @@
 import { createSupabaseClient } from "@/lib/supabase/client";
-import { UserProfile } from "@/types/auth";
+import { Tables } from "@/types/database.types";
 import { useQuery } from "@tanstack/react-query";
 
-const fetchUserProfile = async (userId: string): Promise<UserProfile> => {
+const fetchUserProfile = async (userId: string): Promise<Tables<"profiles">> => {
 	const supabase = createSupabaseClient();
 
 	const { data, error } = await supabase

@@ -34,7 +34,7 @@ const LatestOrders = () => {
 				enableHiding: false, //disable a feature for this column
 			},
 			{
-				accessorFn: (originalRow) => parseInt(originalRow.age), //alternate way
+				accessorFn: (originalRow) => originalRow.age, //alternate way
 				id: "age", //id required if you use accessorFn instead of accessorKey
 				header: "Age",
 				Header: <i style={{ color: "red" }}>Age</i>, //optional custom markup
