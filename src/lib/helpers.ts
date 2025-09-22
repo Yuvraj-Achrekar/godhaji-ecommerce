@@ -7,17 +7,69 @@ export const breadcrumbsRoutes = (route: string) => {
 					href: "/admin/dashboard",
 				},
 			];
-		case "/admin/dashboard/products/add":
+		case "/admin/dashboard/categories/add":
 			return [
 				{ title: "Dashboard", href: "/admin/dashboard" },
-				{ title: "Products", href: "/admin/dashboard/products" },
-				{ title: "add", href: "/admin/dashboard/products/add" },
+				{ title: "Categories", href: "" },
+				{ title: "Add Category", href: "/admin/dashboard/categories/add" },
+			];
+		case "/admin/dashboard/categories/all":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Categories", href: "" },
+				{ title: "All Categories", href: "/admin/dashboard/categories/all" },
+			];
+		case "/admin/dashboard/products/add-product":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Products", href: "" },
+				{ title: "Add Product", href: "/admin/dashboard/products/add-product" },
+			];
+		case "/admin/dashboard/products/add-variant":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Products", href: "" },
+				{ title: "Add Variant", href: "/admin/dashboard/products/add-variant" },
+			];
+		case "/admin/dashboard/products/all-products":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Products", href: "" },
+				{ title: "All Product", href: "/admin/dashboard/products/all-products" },
+			];
+		case "/admin/dashboard/products/all-variants":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Products", href: "" },
+				{ title: "All Variants", href: "/admin/dashboard/products/all-variants" },
+			];
+		case "/admin/dashboard/coupons/add":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Coupons", href: "" },
+				{ title: "Add Coupons", href: "/admin/dashboard/coupons/add" },
+			];
+		case "/admin/dashboard/coupons/all":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Coupons", href: "" },
+				{ title: "All Coupons", href: "/admin/dashboard/coupons/all" },
 			];
 		case "/admin/dashboard/customers":
 			return [
 				{ title: "Dashboard", href: "/admin/dashboard" },
 				{ title: "Customers", href: "/admin/dashboard/customers" },
-			]
+			];
+		case "/admin/dashboard/orders":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Orders", href: "/admin/dashboard/orders" },
+			];
+		case "/admin/dashboard/reviews":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Reviews & Ratings", href: "/admin/dashboard/reviews" },
+			];
 		default:
 			return [
 				{

@@ -1,8 +1,8 @@
 export const DASHBOARD_HOME = "/admin/dashboard";
-export const DASHBOARD_ADD_PRODUCTS = "/admin/dashboard/products/add";
+export const DASHBOARD_ADD_PRODUCTS = "/admin/dashboard/products/add-product";
 export const DASHBOARD_ADD_VARIANTS = "/admin/dashboard/products/add-variant";
-export const DASHBOARD_ALL_PRODUCTS = "/admin/dashboard/products/all";
-export const DASHBOARD_ALL_VARIANTS = "/admin/dashboard/products/variants";
+export const DASHBOARD_ALL_PRODUCTS = "/admin/dashboard/products/all-products";
+export const DASHBOARD_ALL_VARIANTS = "/admin/dashboard/products/all-variants";
 export const DASHBOARD_ALL_CATEGORY = "/admin/dashboard/categories/all";
 export const DASHBOARD_ADD_CATEGORY = "/admin/dashboard/categories/add";
 export const DASHBOARD_ORDERS = "/admin/dashboard/orders";

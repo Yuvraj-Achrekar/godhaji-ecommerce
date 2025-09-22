@@ -7,7 +7,6 @@ export async function GET() {
         .from("profiles")
         .select("*")
        .eq("user_role", "user");
-console.log("Backend data:", data, error);
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
     return NextResponse.json(data);
