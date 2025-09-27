@@ -13,27 +13,23 @@ import { mkConfig, generateCsv, download } from "export-to-csv";
 import { Box, Typography } from "@mui/material";
 import { Download } from "lucide-react";
 import Link from "next/link";
+import { DASHBOARD_ADD_CATEGORY } from "@/routes/adminRoutes";
 
 type CustomersTableProps = {
-	data: Tables<"profiles">[];
+	data: Tables<"categories">[];
 };
 
-const columnHelper = createMRTColumnHelper<Tables<"profiles">>();
+const columnHelper = createMRTColumnHelper<Tables<"categories">>();
 
 const columns = [
-	columnHelper.accessor("username", {
-		header: "UserName",
-		muiTableHeadCellProps: { style: { color: "green" } }, //custom props
-		enableHiding: false, //disable a feature for this column
+	columnHelper.accessor("name", {
+		header: "Name",
 	}),
-	columnHelper.accessor("full_name", {
-		header: "Full Name",
+	columnHelper.accessor("description", {
+		header: "Description",
 	}),
-	columnHelper.accessor("email", {
-		header: "Email",
-	}),
-	columnHelper.accessor("user_role", {
-		header: "Role",
+	columnHelper.accessor("image_url", {
+		header: "Image Url",
 	}),
 ];
 
@@ -43,8 +39,8 @@ const csvConfig = mkConfig({
 	useKeysAsHeaders: true,
 });
 
-const CustomersTable = ({ data }: CustomersTableProps) => {
-	const handleExportRows = (rows: MRT_Row<Tables<"profiles">>[]) => {
+const CategoriesTable = ({ data }: CustomersTableProps) => {
+	const handleExportRows = (rows: MRT_Row<Tables<"categories">>[]) => {
 		const rowData = rows.map((row) => row.original);
 		const csv = generateCsv(csvConfig)(rowData);
 		download(csvConfig)(csv);
@@ -134,7 +130,10 @@ const CustomersTable = ({ data }: CustomersTableProps) => {
 	return (
 		<Card>
 			<CardHeader className="my-0 flex justify-between">
-				<CardTitle className="text-2xl">All Customers</CardTitle>
+				<CardTitle className="text-2xl">All Categories</CardTitle>
+				<Button size="sm">
+					<Link href={DASHBOARD_ADD_CATEGORY}>Add New</Link>
+				</Button>
 			</CardHeader>
 			<Separator orientation="horizontal" />
 			<CardContent className="px-0 bg-amber-300">
@@ -144,4 +143,4 @@ const CustomersTable = ({ data }: CustomersTableProps) => {
 	);
 };
 
-export default CustomersTable;
+export default CategoriesTable;

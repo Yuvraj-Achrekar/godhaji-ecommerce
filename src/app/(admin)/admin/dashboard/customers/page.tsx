@@ -1,7 +1,6 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { Tables } from "@/types/database.types";
 import CustomersTable from "@/components/admin/customers/customersTable";
 
 const CustomersPage = () => {
@@ -21,7 +20,6 @@ const CustomersPage = () => {
 
 	return (
 		<div>
-			{JSON.stringify(data)}
 			<CustomersTable data={data} />
 		</div>
 	);

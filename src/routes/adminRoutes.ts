@@ -1,3 +1,4 @@
+// Admin Sidebar URls
 export const DASHBOARD_HOME = "/admin/dashboard";
 export const DASHBOARD_ADD_PRODUCTS = "/admin/dashboard/products/add-product";
 export const DASHBOARD_ADD_VARIANTS = "/admin/dashboard/products/add-variant";
@@ -10,3 +11,5 @@ export const DASHBOARD_ALL_COUPONS = "/admin/dashboard/coupons/all";
 export const DASHBOARD_ADD_COUPONS = "/admin/dashboard/coupons/add";
 export const DASHBOARD_CUSTOMERS = "/admin/dashboard/customers";
 export const DASHBOARD_REVIEWS = "/admin/dashboard/reviews";
+
+
