@@ -1,6 +1,8 @@
 "use client";
+
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import { Tables } from "@/types/database.types";
+import CustomersTable from "@/components/admin/customers/customersTable";
 
 const CustomersPage = () => {
 	async function fetchCustomers() {
@@ -17,7 +19,12 @@ const CustomersPage = () => {
 	if (isLoading) return <p>Loading...</p>;
 	if (error) return <p>Error: {(error as Error).message}</p>;
 
-	return <div>{JSON.stringify(data)}</div>;
+	return (
+		<div>
+			{JSON.stringify(data)}
+			<CustomersTable data={data} />
+		</div>
+	);
 };
 
 export default CustomersPage;

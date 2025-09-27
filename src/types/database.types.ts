@@ -14,6 +14,56 @@ export type Database = {
   }
   public: {
     Tables: {
+      addresses: {
+        Row: {
+          city: string
+          country: string
+          created_at: string
+          id: string
+          line1: string
+          line2: string | null
+          phone: string | null
+          pincode: string
+          state: string
+          type: string | null
+          user_id: string | null
+        }
+        Insert: {
+          city: string
+          country: string
+          created_at?: string
+          id?: string
+          line1: string
+          line2?: string | null
+          phone?: string | null
+          pincode: string
+          state: string
+          type?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          city?: string
+          country?: string
+          created_at?: string
+          id?: string
+          line1?: string
+          line2?: string | null
+          phone?: string | null
+          pincode?: string
+          state?: string
+          type?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "addresses_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       categories: {
         Row: {
           created_at: string | null
@@ -37,6 +87,35 @@ export type Database = {
           name?: string
         }
         Relationships: []
+      }
+      order_items: {
+        Row: {
+          created_at: string
+          id: string
+          product_id: string | null
+          product_price: number | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          product_id?: string | null
+          product_price?: number | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          product_id?: string | null
+          product_price?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       orders: {
         Row: {
