@@ -7,17 +7,16 @@ export const breadcrumbsRoutes = (route: string) => {
 					href: "/admin/dashboard",
 				},
 			];
+		case "/admin/dashboard/categories":
+			return [
+				{ title: "Dashboard", href: "/admin/dashboard" },
+				{ title: "Categories", href: "/admin/dashboard/categories" },
+			];
 		case "/admin/dashboard/categories/add":
 			return [
 				{ title: "Dashboard", href: "/admin/dashboard" },
-				{ title: "Categories", href: "" },
+				{ title: "Categories", href: "/admin/dashboard/categories" },
 				{ title: "Add Category", href: "/admin/dashboard/categories/add" },
-			];
-		case "/admin/dashboard/categories/all":
-			return [
-				{ title: "Dashboard", href: "/admin/dashboard" },
-				{ title: "Categories", href: "" },
-				{ title: "All Categories", href: "/admin/dashboard/categories/all" },
 			];
 		case "/admin/dashboard/products/add-product":
 			return [

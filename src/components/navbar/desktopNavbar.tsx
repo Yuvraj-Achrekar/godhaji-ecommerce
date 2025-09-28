@@ -10,16 +10,15 @@ import {
 import Link from "next/link";
 import { IconLink, NavLink, ProductLink } from "./navbar";
 import ProfileDropdown from "./profileDropdown";
-import { CircleUser, Loader, User } from "lucide-react";
-import { UserProfile } from "@/types/auth";
-import { Avatar, AvatarFallback } from "../ui/avatar";
+import { CircleUser } from "lucide-react";
 import Image from "next/image";
+import { Tables } from "@/types/database.types";
 
 type DesktopNavbarProps = {
 	navLinks: NavLink[];
 	iconLinks: IconLink[];
 	ProductLinks: ProductLink[];
-	user: UserProfile | undefined;
+	user: Tables<"profiles"> | undefined;
 	loading: boolean;
 };
 
@@ -102,18 +101,13 @@ const DesktopNavbar = ({
 							</NavigationMenuItem>
 						))}
 
-						{
-							// 	loading ? (
-							// 	<Loader />
-							// ) :
-							user ? (
-								<ProfileDropdown user={user} />
-							) : (
-								<Link href={"/auth/login"}>
-									<CircleUser size={30} />
-								</Link>
-							)
-						}
+						{user ? (
+							<ProfileDropdown user={user} />
+						) : (
+							<Link href={"/auth/login"}>
+								<CircleUser size={30} />
+							</Link>
+						)}
 					</NavigationMenuList>
 				</NavigationMenu>
 			</div>
