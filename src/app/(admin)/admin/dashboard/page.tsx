@@ -1,8 +1,8 @@
-import CountOverview from "@/components/admin/dashboard/countOverview";
-import LatestOrders from "@/components/admin/dashboard/latestOrders";
-import LatestReviews from "@/components/admin/dashboard/latestReviews";
-import OrderChart from "@/components/admin/dashboard/orderChart";
-import OrderSummary from "@/components/admin/dashboard/orderSummary";
+import CountOverview from "@/components/admin/countOverview";
+import OrderChart from "@/components/charts/orderChart";
+import OrderSummaryChart from "@/components/charts/orderSummaryChart";
+import LatestOrdersTable from "@/components/tables/latestOrdersTable";
+import LatestReviewsTable from "@/components/tables/latestReviewsTable";
 
 const AdminHome = () => {
 	return (
@@ -13,15 +13,15 @@ const AdminHome = () => {
 					<OrderChart />
 				</div>
 				<div className="w-full md:w-[40%]">
-					<OrderSummary />
+					<OrderSummaryChart />
 				</div>
 			</div>
 			<div className="mt-8 flex flex-col md:flex-row gap-4">
 				<div className="w-full md:w-[60%]">
-					<LatestOrders />
+					<LatestOrdersTable />
 				</div>
 				<div className="w-full md:w-[40%]">
-					<LatestReviews />
+					<LatestReviewsTable />
 				</div>
 			</div>
 		</div>

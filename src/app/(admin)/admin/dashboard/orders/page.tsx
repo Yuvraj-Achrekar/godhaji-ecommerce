@@ -1,7 +1,15 @@
-import React from "react";
+import { Tables } from "@/types/database.types";
 
-const Page = () => {
+type OrdersRow = Tables<"orders">;
+type ProfilesRow = Tables<"profiles">;
+type AddressesRow = Tables<"addresses">;
+export type OrdersTable = OrdersRow & {
+	profiles: ProfilesRow;
+	addresses: AddressesRow;
+};
+
+const OrdersPage = () => {
 	return <div>Page</div>;
 };
 
-export default Page;
+export default OrdersPage;

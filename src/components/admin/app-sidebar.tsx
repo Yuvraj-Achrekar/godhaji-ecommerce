@@ -2,17 +2,17 @@
 
 import * as React from "react";
 import {
-	AudioWaveform,
-	Command,
 	Frame,
-	GalleryVerticalEnd,
 	Map,
 	PieChart,
-	Calendar,
-	Home,
-	Inbox,
-	Search,
-	Settings,
+	Image,
+	Star,
+	Users,
+	BadgePercent,
+	Shirt,
+	Handbag,
+	LayoutGrid,
+	ChartNoAxesCombined,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -37,6 +37,7 @@ import {
 	DASHBOARD_ALL_VARIANTS,
 	DASHBOARD_CUSTOMERS,
 	DASHBOARD_HOME,
+	DASHBOARD_MEDIA,
 	DASHBOARD_ORDERS,
 	DASHBOARD_REVIEWS,
 } from "@/routes/adminRoutes";
@@ -69,13 +70,13 @@ const data = {
 		{
 			title: "Dashboard",
 			url: DASHBOARD_HOME,
-			icon: Home,
+			icon: ChartNoAxesCombined,
 			isActive: true,
 		},
 		{
 			title: "Categories",
 			url: "#",
-			icon: Inbox,
+			icon: LayoutGrid,
 			items: [
 				{
 					title: "Add Category",
@@ -91,7 +92,7 @@ const data = {
 		{
 			title: "Products",
 			url: "#",
-			icon: Calendar,
+			icon: Shirt,
 			items: [
 				{
 					title: "Add Product",
@@ -114,7 +115,7 @@ const data = {
 		{
 			title: "Coupons",
 			url: "#",
-			icon: Search,
+			icon: BadgePercent,
 			items: [
 				{
 					title: "Add Coupon",
@@ -129,17 +130,22 @@ const data = {
 		{
 			title: "Orders",
 			url: DASHBOARD_ORDERS,
-			icon: Settings,
+			icon: Handbag,
 		},
 		{
 			title: "Customers",
 			url: DASHBOARD_CUSTOMERS,
-			icon: Settings,
+			icon: Users,
 		},
 		{
 			title: "Reviews & Ratings",
 			url: DASHBOARD_REVIEWS,
-			icon: Settings,
+			icon: Star,
+		},
+		{
+			title: "Media",
+			url: DASHBOARD_MEDIA,
+			icon: Image,
 		},
 	],
 	projects: [

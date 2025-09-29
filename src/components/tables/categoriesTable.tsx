@@ -10,8 +10,8 @@ import { Tables } from "@/types/database.types";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
 import { mkConfig, generateCsv, download } from "export-to-csv";
-import { Box, Typography } from "@mui/material";
-import { Download } from "lucide-react";
+import { Box, ListItemIcon, MenuItem } from "@mui/material";
+import { Download, SquarePen, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { DASHBOARD_ADD_CATEGORY } from "@/routes/adminRoutes";
 
@@ -56,6 +56,40 @@ const CategoriesTable = ({ data }: CustomersTableProps) => {
 		data, //must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
 		enableRowSelection: true, //enable some features
 		enableColumnOrdering: true, //enable a feature for all columns
+		enableRowActions: true,
+		initialState: {
+			// showColumnFilters: true,
+			// showGlobalFilter: true,
+			columnPinning: {
+				right: ["mrt-row-actions"],
+			},
+		},
+		renderRowActionMenuItems: ({ closeMenu, row }) => [
+			<MenuItem
+				key={0}
+				onClick={() => {
+					// View profile logic...
+					closeMenu();
+				}}
+				sx={{ m: 0, color: "green" }}>
+				<ListItemIcon>
+					<SquarePen color="green" />
+				</ListItemIcon>
+				Edit
+			</MenuItem>,
+			<MenuItem
+				key={1}
+				onClick={() => {
+					// Send email logic...
+					closeMenu();
+				}}
+				sx={{ m: 0, color: "red" }}>
+				<ListItemIcon>
+					<Trash2 color="red" />
+				</ListItemIcon>
+				Delete
+			</MenuItem>,
+		],
 		renderTopToolbarCustomActions: ({ table }) => (
 			<Box
 				sx={{

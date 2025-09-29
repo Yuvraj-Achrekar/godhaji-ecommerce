@@ -24,7 +24,7 @@ const data: Person[] = [
 	},
 ];
 
-const LatestOrders = () => {
+const LatestOrdersTable = () => {
 	const columns = useMemo<MRT_ColumnDef<Person>[]>(
 		() => [
 			{
@@ -64,4 +64,4 @@ const LatestOrders = () => {
 	);
 };
 
-export default LatestOrders;
+export default LatestOrdersTable;

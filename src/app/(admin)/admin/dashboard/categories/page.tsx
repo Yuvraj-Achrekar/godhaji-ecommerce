@@ -1,5 +1,5 @@
 "use client";
-import CategoriesTable from "@/components/admin/categories/categoriesTable";
+import CategoriesTable from "@/components/tables/categoriesTable";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 

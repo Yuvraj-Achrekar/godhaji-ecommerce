@@ -88,26 +88,78 @@ export type Database = {
         }
         Relationships: []
       }
-      order_items: {
+      coupons: {
         Row: {
-          created_at: string
+          code: string
+          created_at: string | null
+          discount_type: string
+          discount_value: number
           id: string
-          product_id: string | null
-          product_price: number | null
+          min_order_value: number | null
+          usage_limit: number | null
+          valid_from: string
+          valid_to: string
         }
         Insert: {
-          created_at?: string
+          code: string
+          created_at?: string | null
+          discount_type: string
+          discount_value: number
           id?: string
-          product_id?: string | null
-          product_price?: number | null
+          min_order_value?: number | null
+          usage_limit?: number | null
+          valid_from: string
+          valid_to: string
         }
         Update: {
-          created_at?: string
+          code?: string
+          created_at?: string | null
+          discount_type?: string
+          discount_value?: number
           id?: string
+          min_order_value?: number | null
+          usage_limit?: number | null
+          valid_from?: string
+          valid_to?: string
+        }
+        Relationships: []
+      }
+      order_items: {
+        Row: {
+          created_at: string | null
+          id: string
+          order_id: string | null
+          product_id: string | null
+          product_price: number
+          quantity: number
+          variant_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          order_id?: string | null
           product_id?: string | null
-          product_price?: number | null
+          product_price: number
+          quantity?: number
+          variant_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          order_id?: string | null
+          product_id?: string | null
+          product_price?: number
+          quantity?: number
+          variant_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "order_items_product_id_fkey"
             columns: ["product_id"]
@@ -115,31 +167,54 @@ export type Database = {
             referencedRelation: "products"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "order_items_variant_id_fkey"
+            columns: ["variant_id"]
+            isOneToOne: false
+            referencedRelation: "product_variants"
+            referencedColumns: ["id"]
+          },
         ]
       }
       orders: {
         Row: {
-          created_at: string
+          address_id: string | null
+          created_at: string | null
+          discount: number | null
+          final_amount: number | null
           id: string
-          status_check: Database["public"]["Enums"]["status_type"] | null
+          status: Database["public"]["Enums"]["status_type"] | null
           total_amount: number
-          user_id: string
+          user_id: string | null
         }
         Insert: {
-          created_at?: string
+          address_id?: string | null
+          created_at?: string | null
+          discount?: number | null
+          final_amount?: number | null
           id?: string
-          status_check?: Database["public"]["Enums"]["status_type"] | null
+          status?: Database["public"]["Enums"]["status_type"] | null
           total_amount: number
-          user_id: string
+          user_id?: string | null
         }
         Update: {
-          created_at?: string
+          address_id?: string | null
+          created_at?: string | null
+          discount?: number | null
+          final_amount?: number | null
           id?: string
-          status_check?: Database["public"]["Enums"]["status_type"] | null
+          status?: Database["public"]["Enums"]["status_type"] | null
           total_amount?: number
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "orders_address_id_fkey"
+            columns: ["address_id"]
+            isOneToOne: false
+            referencedRelation: "addresses"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "orders_user_id_fkey"
             columns: ["user_id"]
@@ -153,26 +228,29 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          mrp: number | null
           name: string | null
-          price: number | null
           product_id: string | null
           quantity: number | null
+          selling_price: number | null
         }
         Insert: {
           created_at?: string
           id?: string
+          mrp?: number | null
           name?: string | null
-          price?: number | null
           product_id?: string | null
           quantity?: number | null
+          selling_price?: number | null
         }
         Update: {
           created_at?: string
           id?: string
+          mrp?: number | null
           name?: string | null
-          price?: number | null
           product_id?: string | null
           quantity?: number | null
+          selling_price?: number | null
         }
         Relationships: [
           {
@@ -186,31 +264,37 @@ export type Database = {
       }
       products: {
         Row: {
-          base_price: number
-          category_id: string | null
+          category_id: string
           created_at: string
           description: string
           id: string
-          ingredients: string[] | null
+          ingredients: string[]
+          mrp: number
           name: string
+          selling_price: number
+          sku: string
         }
         Insert: {
-          base_price: number
-          category_id?: string | null
+          category_id: string
           created_at?: string
           description: string
           id?: string
-          ingredients?: string[] | null
+          ingredients: string[]
+          mrp: number
           name: string
+          selling_price: number
+          sku: string
         }
         Update: {
-          base_price?: number
-          category_id?: string | null
+          category_id?: string
           created_at?: string
           description?: string
           id?: string
-          ingredients?: string[] | null
+          ingredients?: string[]
+          mrp?: number
           name?: string
+          selling_price?: number
+          sku?: string
         }
         Relationships: [
           {
@@ -252,6 +336,48 @@ export type Database = {
         }
         Relationships: []
       }
+      reviews: {
+        Row: {
+          comment: string | null
+          created_at: string | null
+          id: string
+          product_id: string | null
+          rating: number | null
+          user_id: string | null
+        }
+        Insert: {
+          comment?: string | null
+          created_at?: string | null
+          id?: string
+          product_id?: string | null
+          rating?: number | null
+          user_id?: string | null
+        }
+        Update: {
+          comment?: string | null
+          created_at?: string | null
+          id?: string
+          product_id?: string | null
+          rating?: number | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reviews_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
@@ -269,6 +395,8 @@ export type Database = {
         | "refunded"
         | "exchange_requested"
         | "refund_requested"
+        | "exchange_completed"
+        | "pending"
       user_role: "user" | "admin"
     }
     CompositeTypes: {
@@ -406,6 +534,8 @@ export const Constants = {
         "refunded",
         "exchange_requested",
         "refund_requested",
+        "exchange_completed",
+        "pending",
       ],
       user_role: ["user", "admin"],
     },

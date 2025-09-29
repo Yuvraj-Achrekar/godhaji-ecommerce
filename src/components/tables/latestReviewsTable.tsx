@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
-const LatestReviews = () => {
+const LatestReviewsTable = () => {
 	return (
 		<Card className="h-full">
 			<CardHeader>
@@ -9,4 +9,4 @@ const LatestReviews = () => {
 	);
 };
 
-export default LatestReviews;
+export default LatestReviewsTable;

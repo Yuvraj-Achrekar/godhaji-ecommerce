@@ -132,11 +132,11 @@ const CustomersTable = ({ data }: CustomersTableProps) => {
 		},
 	});
 	return (
-		<Card>
+		<Card className="gap-4">
 			<CardHeader className="my-0 flex justify-between">
-				<CardTitle className="text-2xl">All Customers</CardTitle>
+				<CardTitle className="text-lg">All Customers</CardTitle>
 			</CardHeader>
-			<Separator orientation="horizontal" />
+			<Separator />
 			<CardContent className="px-0 bg-amber-300">
 				<MaterialReactTable table={table} />
 			</CardContent>

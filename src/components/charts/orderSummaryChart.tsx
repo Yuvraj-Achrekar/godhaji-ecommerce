@@ -76,7 +76,7 @@ const chartConfig = {
 	},
 } satisfies ChartConfig;
 
-const OrderSummary = () => {
+const OrderSummaryChart = () => {
 	const totalOrders = useMemo(() => {
 		return chartData.reduce((acc, curr) => acc + curr.orders, 0);
 	}, []);
@@ -134,4 +134,4 @@ const OrderSummary = () => {
 	);
 };
 
-export default OrderSummary;
+export default OrderSummaryChart;
