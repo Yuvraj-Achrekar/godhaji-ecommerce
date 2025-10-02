@@ -14,22 +14,45 @@ import { Box, ListItemIcon, MenuItem } from "@mui/material";
 import { Download, SquarePen, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { DASHBOARD_ADD_CATEGORY } from "@/routes/adminRoutes";
+import { OrdersTableDataProps } from "@/app/(admin)/admin/dashboard/orders/page";
 
 type OrdersTableProps = {
-	data: OrdersTableProps[];
+	data: OrdersTableDataProps[];
 };
 
-const columnHelper = createMRTColumnHelper<Tables<"orders">>();
+const columnHelper = createMRTColumnHelper<OrdersTableDataProps>();
 
 const columns = [
 	columnHelper.accessor("id", {
 		header: "Order Id",
 	}),
-	columnHelper.accessor("status", {
-		header: "status",
+	columnHelper.accessor("profiles.full_name", {
+		header: "Name",
+	}),
+	columnHelper.accessor("profiles.email", {
+		header: "Email",
+	}),
+	columnHelper.accessor("profiles.phone", {
+		header: "Phone",
+	}),
+	columnHelper.accessor("addresses.country", {
+		header: "Country",
+	}),
+	columnHelper.accessor("addresses.city", {
+		header: "City",
+	}),
+	columnHelper.accessor("addresses.pincode", {
+		header: "Pincode",
+	}),
+	columnHelper.accessor((row) => row.order_items.length, {
+		id: "order_items",
+		header: "Total Items",
 	}),
 	columnHelper.accessor("final_amount", {
-		header: "Image Url",
+		header: "Total Amount",
+	}),
+	columnHelper.accessor("status", {
+		header: "status",
 	}),
 ];
 
@@ -47,8 +70,10 @@ const OrdersTable = ({ data }: OrdersTableProps) => {
 	};
 
 	const handleExportData = () => {
-		const csv = generateCsv(csvConfig)(data);
-		download(csvConfig)(csv);
+		// const csv = generateCsv(csvConfig)(data);
+		console.log(data);
+
+		// download(csvConfig)(csv);
 	};
 
 	const table = useMaterialReactTable({
@@ -57,13 +82,7 @@ const OrdersTable = ({ data }: OrdersTableProps) => {
 		enableRowSelection: true, //enable some features
 		enableColumnOrdering: true, //enable a feature for all columns
 		enableRowActions: true,
-		initialState: {
-			// showColumnFilters: true,
-			// showGlobalFilter: true,
-			columnPinning: {
-				right: ["mrt-row-actions"],
-			},
-		},
+		positionActionsColumn: "last",
 		renderRowActionMenuItems: ({ closeMenu, row }) => [
 			<MenuItem
 				key={0}
@@ -107,8 +126,8 @@ const OrdersTable = ({ data }: OrdersTableProps) => {
 				<Button
 					disabled={table.getPrePaginationRowModel().rows.length === 0}
 					//export all rows, including from the next page, (still respects filtering and sorting)
-					onClick={() =>
-						handleExportRows(table.getPrePaginationRowModel().rows)
+					onClick={
+						() => {} // handleExportRows(table.getPrePaginationRowModel().rows)
 					}>
 					<Download />
 					Export All Rows
@@ -116,7 +135,9 @@ const OrdersTable = ({ data }: OrdersTableProps) => {
 				<Button
 					disabled={table.getRowModel().rows.length === 0}
 					//export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
-					onClick={() => handleExportRows(table.getRowModel().rows)}>
+					onClick={
+						() => {} // handleExportRows(table.getRowModel().rows)
+					}>
 					<Download />
 					Export Page Rows
 				</Button>
@@ -125,7 +146,9 @@ const OrdersTable = ({ data }: OrdersTableProps) => {
 						!table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
 					}
 					//only export selected rows
-					onClick={() => handleExportRows(table.getSelectedRowModel().rows)}>
+					onClick={
+						() => {} // handleExportRows(table.getSelectedRowModel().rows)
+					}>
 					<Download />
 					Export Selected Rows
 				</Button>
@@ -162,9 +185,9 @@ const OrdersTable = ({ data }: OrdersTableProps) => {
 		},
 	});
 	return (
-		<Card>
+		<Card className="w-[calc(100vw-300px)] gap-4">
 			<CardHeader className="my-0 flex justify-between">
-				<CardTitle className="text-2xl">All Categories</CardTitle>
+				<CardTitle className="text-2xl">All Orders</CardTitle>
 				<Button size="sm">
 					<Link href={DASHBOARD_ADD_CATEGORY}>Add New</Link>
 				</Button>
