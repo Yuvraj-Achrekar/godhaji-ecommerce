@@ -7,7 +7,7 @@ const categoriesList = [
 
 const ShopByCategory = () => {
   return (
-    <section className="section-container">
+    <section className="section-container1">
       <h2 className="section-title text-[#666666]">Shop By Category</h2>
       <div className="w-20 sm:w-24 h-1 sm:h-2 mt-4 mb-6 rounded-3xl bg-[#b36949]" />
 

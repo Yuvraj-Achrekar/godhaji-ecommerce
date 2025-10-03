@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 
 const HomeBanner = () => {
   return (
-    <section className="h-[450px] w-full sm:w-[80%] mx-auto relative flex justify-center items-center bg-black overflow-hidden rounded-[10px]">
+    <section className="h-[450px] w-full sm:w-[90%] mx-auto relative flex justify-center items-center bg-black overflow-hidden rounded-[10px]">
       {/* Background image */}
       <img
         src="/assets/home/why.png"

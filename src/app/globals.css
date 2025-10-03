@@ -129,6 +129,9 @@
 		@apply text-xs md:text-base lg:text-lg text-center mb-4;
 	}
 	.section-container {
+		@apply container  mx-auto max-w-6xl py-10 px-4 flex flex-col items-center gap-2;
+	}
+	.section-container1 {
 		@apply container  mx-auto py-10 px-4 flex flex-col items-center gap-2;
 	}
 	.section-title {
