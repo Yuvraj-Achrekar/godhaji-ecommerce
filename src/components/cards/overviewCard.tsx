@@ -1,14 +1,28 @@
+"use client";
+import { useRouter } from "next/navigation";
+
 type OverviewCardProps = {
 	title: string;
 	count: number;
 	icon: React.ReactElement;
 	color: string;
+	href: string;
 };
 
-const OverviewCard = ({ title, count, icon, color }: OverviewCardProps) => {
+const OverviewCard = ({
+	title,
+	count,
+	icon,
+	color,
+	href,
+}: OverviewCardProps) => {
+	const router = useRouter();
 	return (
 		<div
-			className="flex justify-between p-4 rounded-md border border-l-5 shadow-md"
+			onClick={() => {
+				router.push(href);
+			}}
+			className="flex justify-between p-4 rounded-md border border-l-5 shadow-md cursor-pointer"
 			style={{ borderColor: color }}>
 			<div>
 				<h4 className="text-gray-500 font-mono">{title}</h4>
