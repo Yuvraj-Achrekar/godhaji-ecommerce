@@ -20,6 +20,9 @@ import {
 	Pie,
 	PieChart,
 } from "recharts";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { DASHBOARD_ORDERS } from "@/routes/adminRoutes";
 
 const chartData = [
 	{ status: "chrome", orders: 275, fill: "var(--color-chrome)" },
@@ -82,9 +85,11 @@ const OrderSummaryChart = () => {
 	}, []);
 	return (
 		<Card className="h-full flex flex-col">
-			<CardHeader className="items-center pb-0">
+			<CardHeader className="my-0 flex justify-between">
 				<CardTitle>Order Summary</CardTitle>
-				{/* <CardDescription>January - June 2024</CardDescription> */}
+				<Button size="sm">
+					<Link href={DASHBOARD_ORDERS}>View All</Link>
+				</Button>
 			</CardHeader>
 			<CardContent className="flex-1 pb-0">
 				<ChartContainer config={chartConfig} className="mx-auto h-full w-full">

@@ -7,6 +7,9 @@ import {
 	type ChartConfig,
 } from "@/components/ui/chart";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { Button } from "../ui/button";
+import Link from "next/link";
+import { DASHBOARD_ORDERS } from "@/routes/adminRoutes";
 
 const chartConfig = {
 	desktop: {
@@ -30,8 +33,11 @@ const chartData = [
 const OrderChart = () => {
 	return (
 		<Card>
-			<CardHeader>
+			<CardHeader className="my-0 flex justify-between">
 				<CardTitle>Order Overview</CardTitle>
+				<Button size="sm">
+					<Link href={DASHBOARD_ORDERS}>View All</Link>
+				</Button>
 			</CardHeader>
 			<CardContent className="p-2 md:px-4">
 				<ChartContainer config={chartConfig}>

@@ -6,7 +6,7 @@ import LatestReviewsTable from "@/components/tables/latestReviewsTable";
 
 const AdminHome = () => {
 	return (
-		<div>
+		<div className="pb-10">
 			<CountOverview />
 			<div className="mt-8 flex flex-col md:flex-row gap-4">
 				<div className="w-full md:w-[60%]">
