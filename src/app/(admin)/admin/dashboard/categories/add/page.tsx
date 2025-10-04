@@ -1,3 +1,4 @@
+import InputWithLabel from "@/components/inputWithLabel";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,20 +15,20 @@ const AddCategory = () => {
 			<CardContent>
 				<form action="">
 					<div className="grid w-full items-center gap-4">
-						<Label htmlFor="email">Name</Label>
-						<Input
-							type="email"
-							id="email"
+						<InputWithLabel
+							label="Name"
+							inputType="text"
 							placeholder="Enter the name of the category"
+							name="name"
+							required={true}
 						/>
-						<Label htmlFor="description">Description</Label>
-						<Input
-							type="text"
-							id="description"
+						<InputWithLabel
+							label="Description"
+							inputType="text"
 							placeholder="Enter a description for the category"
+							name="sescription"
+							required={true}
 						/>
-						<Label htmlFor="email">Email</Label>
-						<Input type="email" id="email" placeholder="Email" />
 						<Button>Add Category</Button>
 					</div>
 				</form>

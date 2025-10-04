@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
     const { data, error } = await supabaseAdmin
-        .from("profiles")
-        .select("*");
+        .from("reviews")
+        .select(`*, product:products(*), user:profiles(*)`);
     //    .eq("user_role", "user");
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });
