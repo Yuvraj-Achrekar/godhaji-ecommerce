@@ -14,7 +14,7 @@ import { Box, ListItemIcon, MenuItem } from "@mui/material";
 import { Download, SquarePen, Trash2 } from "lucide-react";
 import Link from "next/link";
 import { DASHBOARD_ADD_CATEGORY } from "@/routes/adminRoutes";
-import { OrdersTableDataProps } from "@/app/(admin)/admin/dashboard/orders/page";
+import { OrdersTableDataProps } from "@/types/admin.types";
 
 type OrdersTableProps = {
 	data: OrdersTableDataProps[];

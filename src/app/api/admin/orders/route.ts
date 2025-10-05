@@ -10,7 +10,7 @@ export async function GET() {
         profiles:user_id (*),
         addresses:address_id (*),
         order_items(*)
-        `);
+        `).order('created_at', { ascending: false });;
     
     
 

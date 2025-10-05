@@ -10,6 +10,7 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { DASHBOARD_ORDERS } from "@/routes/adminRoutes";
+import { OrdersChartData } from "@/types/admin.types";
 
 const chartConfig = {
 	desktop: {
@@ -30,7 +31,7 @@ const chartData = [
 	{ month: "May", orders: 209 },
 	{ month: "June", orders: 214 },
 ];
-const OrderChart = () => {
+const OrderChart = ({ data = [] }: { data: OrdersChartData[] }) => {
 	return (
 		<Card>
 			<CardHeader className="my-0 flex justify-between">
@@ -41,7 +42,7 @@ const OrderChart = () => {
 			</CardHeader>
 			<CardContent className="p-2 md:px-4">
 				<ChartContainer config={chartConfig}>
-					<BarChart accessibilityLayer data={chartData}>
+					<BarChart accessibilityLayer data={data}>
 						<CartesianGrid vertical={false} />
 						<XAxis
 							dataKey="month"

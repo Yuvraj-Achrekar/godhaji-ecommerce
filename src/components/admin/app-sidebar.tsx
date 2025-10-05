@@ -1,11 +1,12 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import {
 	Frame,
 	Map,
 	PieChart,
-	Image,
+	Image as ImageIcon,
 	Star,
 	Users,
 	BadgePercent,
@@ -16,9 +17,7 @@ import {
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
 import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
 import {
 	Sidebar,
 	SidebarContent,
@@ -44,28 +43,28 @@ import {
 
 // This is sample data.
 const data = {
-	user: {
-		name: "shadcn",
-		email: "m@example.com",
-		avatar: "/avatars/shadcn.jpg",
-	},
-	teams: [
-		{
-			name: "Godhaji",
-			logo: "/assets/logo/logo-favicon-white.svg",
-			plan: "Enterprise",
-		},
-		{
-			name: "Acme Corp.",
-			logo: "/assets/logo/logo-favicon-white.svg",
-			plan: "Startup",
-		},
-		{
-			name: "Evil Corp.",
-			logo: "/assets/logo/logo-favicon-white.svg",
-			plan: "Free",
-		},
-	],
+	// user: {
+	// 	name: "shadcn",
+	// 	email: "m@example.com",
+	// 	avatar: "/avatars/shadcn.jpg",
+	// },
+	// teams: [
+	// 	{
+	// 		name: "Godhaji",
+	// 		logo: "/assets/logo/logo-favicon-white.svg",
+	// 		plan: "Enterprise",
+	// 	},
+	// 	{
+	// 		name: "Acme Corp.",
+	// 		logo: "/assets/logo/logo-favicon-white.svg",
+	// 		plan: "Startup",
+	// 	},
+	// 	{
+	// 		name: "Evil Corp.",
+	// 		logo: "/assets/logo/logo-favicon-white.svg",
+	// 		plan: "Free",
+	// 	},
+	// ],
 	navMain: [
 		{
 			title: "Dashboard",
@@ -145,24 +144,7 @@ const data = {
 		{
 			title: "Media",
 			url: DASHBOARD_MEDIA,
-			icon: Image,
-		},
-	],
-	projects: [
-		{
-			name: "Design Engineering",
-			url: "#",
-			icon: Frame,
-		},
-		{
-			name: "Sales & Marketing",
-			url: "#",
-			icon: PieChart,
-		},
-		{
-			name: "Travel",
-			url: "#",
-			icon: Map,
+			icon: ImageIcon,
 		},
 	],
 };
@@ -171,15 +153,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 	return (
 		<Sidebar collapsible="icon" {...props}>
 			<SidebarHeader>
-				<TeamSwitcher teams={data.teams} />
+				<div className="flex items-center space-x-2 px-1">
+					<Image
+						src={"/assets/logo/logo-favicon-white.svg"}
+						height={40}
+						width={40}
+						alt="Brand-Logo"
+						className="aspect-square bg-primary rounded-md"
+					/>
+					<span className="font-medium text-3xl">Godhaji</span>
+				</div>
 			</SidebarHeader>
 			<SidebarContent>
 				<NavMain items={data.navMain} />
 				{/* <NavProjects projects={data.projects} /> */}
 			</SidebarContent>
-			<SidebarFooter>
-				<NavUser user={data.user} />
-			</SidebarFooter>
+			<SidebarFooter>{/* <NavUser user={data.user} /> */}</SidebarFooter>
 			<SidebarRail />
 		</Sidebar>
 	);

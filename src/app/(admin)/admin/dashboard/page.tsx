@@ -1,29 +1,24 @@
+// "use client";
+import { fetchOrders } from "@/actions/admin";
+import AdminHomeClient from "@/components/admin/adminHomeClient";
 import CountOverview from "@/components/admin/countOverview";
-import OrderChart from "@/components/charts/orderChart";
-import OrderSummaryChart from "@/components/charts/orderSummaryChart";
-import LatestOrdersTable from "@/components/tables/latestOrdersTable";
-import LatestReviewsTable from "@/components/tables/latestReviewsTable";
+import { createSupabaseServer } from "@/lib/supabase/server";
+import { OverviewTableCounts } from "@/types/admin.types";
 
-const AdminHome = () => {
+const AdminHome = async () => {
+	const supabase = await createSupabaseServer();
+	const { data: countData } = await supabase.rpc("get_table_counts");
+	const countMap = (countData as OverviewTableCounts) || {
+		categories: 0,
+		products: 0,
+		profiles: 0,
+		orders: 0,
+	};
+
 	return (
 		<div className="pb-10">
-			<CountOverview />
-			<div className="mt-8 flex flex-col md:flex-row gap-4">
-				<div className="w-full md:w-[60%]">
-					<OrderChart />
-				</div>
-				<div className="w-full md:w-[40%]">
-					<OrderSummaryChart />
-				</div>
-			</div>
-			<div className="mt-8 flex flex-col md:flex-row gap-4">
-				<div className="w-full md:w-[60%]">
-					<LatestOrdersTable />
-				</div>
-				<div className="w-full md:w-[40%]">
-					<LatestReviewsTable />
-				</div>
-			</div>
+			<CountOverview countData={countMap} />
+			<AdminHomeClient />
 		</div>
 	);
 };

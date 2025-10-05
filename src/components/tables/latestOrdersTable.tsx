@@ -10,33 +10,22 @@ import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { DASHBOARD_ORDERS } from "@/routes/adminRoutes";
+import { OrdersTableDataProps } from "@/types/admin.types";
 
-interface Person {
-	name: string;
-	age: number;
-}
-
-//mock data - strongly typed if you are using TypeScript (optional, but recommended)
-const data: Person[] = Array.from({ length: 30 }).map((_, i) => ({
-	name: i % 2 === 0 ? "John" : "Sara",
-	age: 20 + (i % 10),
-}));
-
-const LatestOrdersTable = () => {
-	const columns = useMemo<MRT_ColumnDef<Person>[]>(
+const LatestOrdersTable = ({ data = [] }: { data: OrdersTableDataProps[] }) => {
+	const columns = useMemo<MRT_ColumnDef<OrdersTableDataProps>[]>(
 		() => [
 			{
-				accessorKey: "name", //simple recommended way to define a column
-				header: "Name",
-				// muiTableHeadCellProps: { style: { color: "green" } }, //custom props
-				enableHiding: false, //disable a feature for this column
+				accessorKey: "id", //simple recommended way to define a column
+				header: "Order ID",
 			},
 			{
-				accessorFn: (originalRow) => originalRow.age, //alternate way
-				id: "age", //id required if you use accessorFn instead of accessorKey
-				header: "Age",
-				// Header: <i style={{ color: "red" }}>Age</i>, //optional custom markup
-				Cell: ({ cell }) => <i>{cell.getValue<number>().toLocaleString()}</i>, //optional custom cell render
+				accessorKey: "status", //simple recommended way to define a column
+				header: "Status",
+			},
+			{
+				accessorKey: "final_amount", //simple recommended way to define a column
+				header: "Total Amount",
 			},
 		],
 		[]
