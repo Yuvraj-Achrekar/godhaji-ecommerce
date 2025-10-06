@@ -83,6 +83,7 @@ const OrderSummaryChart = () => {
 	const totalOrders = useMemo(() => {
 		return chartData.reduce((acc, curr) => acc + curr.orders, 0);
 	}, []);
+
 	return (
 		<Card className="h-full flex flex-col">
 			<CardHeader className="my-0 flex justify-between">
