@@ -25,10 +25,7 @@ const categoriesList = [
 
 const SupportModel = () => {
   return (
-    <section className="section-container">
-      <h2 className="section-title text-[#666666]">Shop By Category</h2>
-      <div className="w-20 sm:w-24 h-1 sm:h-2 mt-4 mb-6 rounded-3xl bg-[#b36949]" />
-
+    <section className="section-container1">
       {/* Grid container */}
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
         {categoriesList.map((category, index) => {
