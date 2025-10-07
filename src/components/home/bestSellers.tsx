@@ -15,37 +15,37 @@ const categoriesList = [
 		off: "50%",
 	},
 	{
-		subject: "Meat & Fish",
+		subject: "Lemon Pickle",
 		description:
-			"Enjoy premium quality meat and fish products, carefully selected for freshness and taste.",
-		price: "Rs.150",
-		cancelPrice: "Rs250",
-		category: "Pickle",
-		rating: 4.7,
-		ratingCount: 2500,
-		off: "40%",
-	},
-	{
-		subject: "Dairy & Eggs",
-		description:
-			"Rich and wholesome dairy products including milk, butter, and farm-fresh eggs.",
-		price: "Rs.120",
+			"Brighten up your plate with Godha Brother's lime pickle! Juicy, fresh and tangy taste.",
+		price: "Rs.100",
 		cancelPrice: "Rs200",
 		category: "Pickle",
-		rating: 2.5,
-		ratingCount: 1800,
-		off: "30%",
+		rating: 4.5,
+		ratingCount: 1500,
+		off: "50%",
 	},
 	{
-		subject: "Beverages",
+		subject: "Lemon Pickle",
 		description:
-			"Refreshing beverages and juices made from natural ingredients, perfect for every occasion.",
-		price: "Rs.80",
-		cancelPrice: "Rs150",
+			"Brighten up your plate with Godha Brother's lime pickle! Juicy, fresh and tangy taste.",
+		price: "Rs.100",
+		cancelPrice: "Rs200",
 		category: "Pickle",
-		rating: 3.2,
-		ratingCount: 950,
-		off: "45%",
+		rating: 4.5,
+		ratingCount: 1500,
+		off: "50%",
+	},
+	{
+		subject: "Lemon Pickle",
+		description:
+			"Brighten up your plate with Godha Brother's lime pickle! Juicy, fresh and tangy taste.",
+		price: "Rs.100",
+		cancelPrice: "Rs200",
+		category: "Pickle",
+		rating: 4.5,
+		ratingCount: 1500,
+		off: "50%",
 	},
 ];
 
@@ -60,8 +60,10 @@ const formatCount = (count: number) => {
 const BestSeller = () => {
 	return (
 		<section className="section-container">
-			<h2 className="section-title text-[#666666]">Our BestSellers</h2>
-			<div className="w-20 sm:w-24 h-1 sm:h-2 mt-4 mb-6 rounded-3xl bg-[#b36949]" />
+			<h2 className="section-title mb-2 md:mb-4 text-[#666666]">
+				Our BestSellers
+			</h2>
+			<div className="w-20 sm:w-24 h-[5px] mb-2 md:mb-4 rounded-3xl bg-[#b36949]" />
 			<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center w-full">
 				{categoriesList.map((category, index) => {
 					const totalStars = 5;
@@ -74,7 +76,7 @@ const BestSeller = () => {
 							className="flex flex-col justify-between bg-white rounded-lg shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-1 p-2 md:p-4 gap-2">
 							<div className="relative">
 								<Image
-									src={"/assets/home/item.png"}
+									src={"/assets/home/demo_product.png"}
 									height={128}
 									width={128}
 									alt={category.subject}
@@ -101,8 +103,8 @@ const BestSeller = () => {
 									</h2>
 								</div>
 								<div>
-									<div className="flex items-center gap-2">
-										<span className="text-sm sm:text-base font-medium text-gray-800">
+									<div className="flex items-center gap-1 ">
+										<span className="text-sm font-medium text-gray-800">
 											{category.rating}
 										</span>
 										<div className="flex">
@@ -128,7 +130,7 @@ const BestSeller = () => {
 
 									<div className="flex justify-between items-center">
 										<div className="flex items-center gap-2">
-											<span className="text-sm sm:text-base md:text-lg font-light">
+											<span className="text-sm sm:text-base md:text-lg font-[600]">
 												{category.price}
 											</span>
 											<span className="text-xs sm:text-sm line-through text-gray-400">
@@ -138,7 +140,7 @@ const BestSeller = () => {
 									</div>
 								</div>
 								<Button className="bg-[#b36949] hover:bg-[#b36949] justify-center px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg rounded-[5px] flex items-center">
-									<span className="font-medium">Add To Cart</span>
+									<span className="font-medium text-sm">ADD TO CART</span>
 								</Button>
 							</div>
 						</div>

@@ -3,19 +3,16 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { CircleUser } from "lucide-react";
 import { createSupabaseClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { UserProfile } from "@/types/auth";
+import { Tables } from "@/types/database.types";
 
 type ProfileDropdownProps = {
-	user: UserProfile | null;
+	user: Tables<"profiles"> | null;
 };
 
 const ProfileDropdown = ({ user }: ProfileDropdownProps) => {
@@ -34,7 +31,7 @@ const ProfileDropdown = ({ user }: ProfileDropdownProps) => {
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Avatar>
-					<AvatarImage src={user?.avatar_url} />
+					<AvatarImage src={user?.avatar_url ?? undefined} />
 					<AvatarFallback color="blue">
 						{user?.email?.slice(0, 2).toLocaleUpperCase()}
 					</AvatarFallback>
