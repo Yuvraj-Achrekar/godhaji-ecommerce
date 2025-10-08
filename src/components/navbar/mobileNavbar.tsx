@@ -14,13 +14,13 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { UserProfile } from "@/types/auth";
 import Image from "next/image";
+import { Tables } from "@/types/database.types";
 
 type MobileNavbarProps = {
 	iconLinks: IconLink[];
 	navLinks: NavLink[];
-	user: UserProfile | undefined;
+	user: Tables<"profiles"> | undefined;
 	loading: boolean;
 };
 

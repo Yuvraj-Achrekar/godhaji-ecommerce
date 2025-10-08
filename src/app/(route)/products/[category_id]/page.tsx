@@ -1,4 +1,4 @@
-import HeroProducts from "@/components/products/heroProducts";
+import HeroProducts from "@/components/products/heroProduct";
 import React, { use } from "react";
 
 const CategoryProductsPage = ({

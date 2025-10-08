@@ -10,10 +10,11 @@ import {
 import Link from "next/link";
 import { IconLink, NavLink, ProductLink } from "./navbar";
 import ProfileDropdown from "./profileDropdown";
-import { CircleUser } from "lucide-react";
+import { CircleUser, Search } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Tables } from "@/types/database.types";
+import { Input } from "../ui/input";
 
 type DesktopNavbarProps = {
 	navLinks: NavLink[];
@@ -64,6 +65,13 @@ const DesktopNavbar = ({
 							alt="Logo-Main"
 						/>
 					</Link>
+				</div>
+				<div className="relative w-1/3 hidden lg:block rounded-lg">
+					<Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#9c4f2f]" />
+					<Input
+						placeholder="Search"
+						className="pl-10 w-full border-[#9c4f2f]"
+					/>
 				</div>
 				<div>
 					<NavigationMenu>

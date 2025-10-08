@@ -120,7 +120,7 @@
 		@apply bg-background text-foreground w-[100vw] h-[100vh] overflow-x-hidden;
 	}
 	.custom-container {
-		@apply pt-14 h-screen;
+		@apply pt-18 h-screen;
 	}
 	.hero-title {
 		@apply text-2xl md:text-3xl lg:text-4xl font-semibold text-center mb-1;
