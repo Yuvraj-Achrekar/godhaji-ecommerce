@@ -58,6 +58,7 @@ const formatCount = (count: number) => {
 };
 
 const BestSeller = () => {
+	// const navigate
 	return (
 		<section className="section-container">
 			<h2 className="section-title mb-2 md:mb-4 text-[#666666]">
@@ -73,7 +74,7 @@ const BestSeller = () => {
 					return (
 						<div
 							key={index}
-							className="flex flex-col justify-between bg-white rounded-lg shadow-lg hover:shadow-2xl transition-transform transform hover:-translate-y-1 p-2 md:p-4 gap-2">
+							className="flex flex-col justify-between bg-white rounded-lg transition-transform transform hover:-translate-y-1 p-2 md:p-4 gap-2">
 							<div className="relative">
 								<Image
 									src={"/assets/home/demo_product.png"}
@@ -139,7 +140,7 @@ const BestSeller = () => {
 										</div>
 									</div>
 								</div>
-								<Button className="bg-[#b36949] hover:bg-[#b36949] justify-center px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg rounded-[5px] flex items-center">
+								<Button className="bg-primary hover:bg-primary-foreground justify-center px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-lg rounded-[5px] flex items-center">
 									<span className="font-medium text-sm">ADD TO CART</span>
 								</Button>
 							</div>
