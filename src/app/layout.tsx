@@ -6,9 +6,9 @@ import AuthProvider from "@/providers/authProvider";
 import QueryProvider from "@/providers/queryProvider";
 
 const montserrat = Montserrat({
-	variable: "--font-montserrat",
 	subsets: ["latin"],
-	weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+	weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
+	variable: "--font-montserrat",
 });
 
 export const metadata: Metadata = {
