@@ -75,52 +75,52 @@ const DesktopNavbar = ({
 				</div>
 				<div>
 					<NavigationMenu>
-						<NavigationMenuList>
-							{navLinks.map(({ href, label }) =>
-								label === "Shop" ? (
-									<NavigationMenuItem key={href + label}>
-										<NavigationMenuTrigger
-											className={`bg-transparent ${
-												pathname.startsWith("/products")
-													? "text-[#9c4f2f] border-b-2 border-[#9c4f2f]"
-													: ""
-											}`}>
-											{label}
-										</NavigationMenuTrigger>
-										<NavigationMenuContent>
-											<ul className="grid gap-2 grid-cols-2 lg:w-[300px] xl:w-[350px]">
-												<ProductLinkItem
-													title="Product 1"
-													href="/products/1"
-													active={pathname === "/products/1"} // ✅ correct
-												>
-													Description for Product 1
-												</ProductLinkItem>
-												<ProductLinkItem
-													title="Product 2"
-													href="/products/2"
-													active={pathname === "/products/2"} // ✅ fix here
-												>
-													Description for Product 2
-												</ProductLinkItem>
-												<ProductLinkItem
-													title="Product 3"
-													href="/products/3"
-													active={pathname === "/products/3"} // ✅ fix here
-												>
-													Description for Product 3
-												</ProductLinkItem>
-											</ul>
-										</NavigationMenuContent>
-									</NavigationMenuItem>
-								) : (
-									<NavigationMenuItem key={href + label}>
-										<NavigationMenuLink active={pathname === href} asChild>
-											<Link href={href}>{label}</Link>
-										</NavigationMenuLink>
-									</NavigationMenuItem>
-								)
-							)}
+						<NavigationMenuList className="gap-6">
+							{navLinks.map(({ href, label }) => (
+								// label === "Shop" ? (
+								// 	<NavigationMenuItem key={href + label}>
+								// 		<NavigationMenuTrigger
+								// 			className={`bg-transparent ${
+								// 				pathname.startsWith("/products")
+								// 					? "text-[#9c4f2f] border-b-2 border-[#9c4f2f]"
+								// 					: ""
+								// 			}`}>
+								// 			{label}
+								// 		</NavigationMenuTrigger>
+								// 		<NavigationMenuContent>
+								// 			<ul className="grid gap-2 grid-cols-2 lg:w-[300px] xl:w-[350px]">
+								// 				<ProductLinkItem
+								// 					title="Product 1"
+								// 					href="/products/1"
+								// 					active={pathname === "/products/1"} // ✅ correct
+								// 				>
+								// 					Description for Product 1
+								// 				</ProductLinkItem>
+								// 				<ProductLinkItem
+								// 					title="Product 2"
+								// 					href="/products/2"
+								// 					active={pathname === "/products/2"} // ✅ fix here
+								// 				>
+								// 					Description for Product 2
+								// 				</ProductLinkItem>
+								// 				<ProductLinkItem
+								// 					title="Product 3"
+								// 					href="/products/3"
+								// 					active={pathname === "/products/3"} // ✅ fix here
+								// 				>
+								// 					Description for Product 3
+								// 				</ProductLinkItem>
+								// 			</ul>
+								// 		</NavigationMenuContent>
+								// 	</NavigationMenuItem>
+								// ) :
+
+								<NavigationMenuItem key={href + label}>
+									<NavigationMenuLink active={pathname === href} asChild>
+										<Link href={href}>{label}</Link>
+									</NavigationMenuLink>
+								</NavigationMenuItem>
+							))}
 							{iconLinks.map(({ icon, href }, index) => (
 								<NavigationMenuItem key={href + index}>
 									<NavigationMenuLink active={pathname === href} asChild>
