@@ -10,7 +10,7 @@ const ProductDetails = () => {
 	return (
 		<section className="custom-container h-full lg:min-h-screen">
 			<div className="bg-gray-400 h-12"></div>
-			<div className="flex flex-col lg:flex-row gap-6 w-full h-full max-w-6xl mx-auto my-10">
+			<div className="flex flex-col md:flex-row gap-6 w-full h-full max-w-6xl mx-auto py-10 px-4">
 				<div className="w-full md:w-[50%] h-full">
 					<ProductCarousel />
 				</div>
@@ -53,16 +53,16 @@ const ProductDetails = () => {
 						</label>
 						<div className="flex gap-3">
 							{["200gm", "250gm", "500gm"].map((weight) => (
-								<Button
+								<button
 									key={weight}
 									onClick={() => setSelectedWeight(weight)}
 									className={`px-4 py-2 rounded-lg  text-sm font-medium transition ${
 										selectedWeight === weight
-											? "bg-primary text-white"
-											: "bg-gray-200 text-black hover:border-gray-300 hover:text-white"
+											? "active-button"
+											: "inactive-button"
 									}`}>
 									{weight}
-								</Button>
+								</button>
 							))}
 						</div>
 					</div>
@@ -86,13 +86,13 @@ const ProductDetails = () => {
 									<Plus className="w-4 h-4 text-gray-700" />
 								</button>
 							</div>
-							<button className="grow py-4 border-2 rounded-lg bg-white  hover:bg-primary-foreground">
+							<button className="grow py-2 lg:py-3 border-2 rounded-lg bg-white hover:bg-primary-foreground">
 								Add to Cart
 							</button>
 						</div>
 
 						{/* Action Buttons */}
-						<button className="w-full py-4 border-2 rounded-lg bg-primary text-white ">
+						<button className="w-full py-2 lg:py-3 border-2 rounded-lg bg-primary text-white ">
 							Buy Now
 						</button>
 					</div>

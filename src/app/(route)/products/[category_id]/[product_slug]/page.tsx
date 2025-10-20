@@ -1,4 +1,6 @@
+import BestSeller from "@/components/home/bestSellers";
 import ProductDetails from "@/components/products/productDetails";
+import TabsSection from "@/components/products/tabsSection";
 
 const ProductPage = () =>
 	// 	{
@@ -13,6 +15,8 @@ const ProductPage = () =>
 		return (
 			<div>
 				<ProductDetails />
+				<TabsSection />
+				<BestSeller />
 			</div>
 		);
 	};
