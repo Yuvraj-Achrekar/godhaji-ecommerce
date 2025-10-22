@@ -4,14 +4,18 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 export default function FilterSidebar() {
-	const [expandedSections, setExpandedSections] = useState({
+	type SectionKey = "categories" | "taste" | "price" | "shelfLife";
+
+	type ExpandedSections = Record<SectionKey, boolean>;
+
+	const [expandedSections, setExpandedSections] = useState<ExpandedSections>({
 		categories: true,
 		taste: true,
 		price: true,
 		shelfLife: true,
 	});
 
-	const toggleSection = (section: string) => {
+	const toggleSection = (section: SectionKey) => {
 		setExpandedSections((prev) => ({
 			...prev,
 			[section]: !prev[section],
@@ -20,6 +24,10 @@ export default function FilterSidebar() {
 
 	return (
 		<div className="space-y-6">
+			<div className="flex items-center gap-2">
+				<span className="text-[#9b4f2e] text-lg">⚙️</span>
+				<span className="text-[#121212] font-semibold">Filter</span>
+			</div>
 			{/* Categories */}
 			<div>
 				<button
