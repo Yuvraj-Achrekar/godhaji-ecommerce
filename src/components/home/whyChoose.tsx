@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Quote } from "lucide-react";
-import StarRating from "@/components/ui/starRating";
+import StarRating from "@/components/starRating";
 
 const reviews = [
 	{
