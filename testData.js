@@ -1,6 +1,7 @@
 export const categoriesList = [
 	{
 		name: "Lemon Pickle",
+		slug: "lemon-pickle",
 		description:
 			"Brighten up your plate with Godha Brother's lime pickle! Juicy, fresh and tangy taste.",
 		selling_price: 100,
@@ -12,6 +13,7 @@ export const categoriesList = [
 	},
 	{
 		name: "Lemon Pickle",
+		slug: "lemon-pickle",
 		description:
 			"Brighten up your plate with Godha Brother's lime pickle! Juicy, fresh and tangy taste.",
 		selling_price: 100,
@@ -23,6 +25,7 @@ export const categoriesList = [
 	},
 	{
 		name: "Lemon Pickle",
+		slug: "lemon-pickle",
 		description:
 			"Brighten up your plate with Godha Brother's lime pickle! Juicy, fresh and tangy taste.",
 		selling_price: 100,
@@ -34,6 +37,7 @@ export const categoriesList = [
 	},
 	{
 		name: "Lemon Pickle",
+		slug: "lemon-pickle",
 		description:
 			"Brighten up your plate with Godha Brother's lime pickle! Juicy, fresh and tangy taste.",
 		selling_price: 100,

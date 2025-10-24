@@ -8,6 +8,7 @@ import { ca } from "date-fns/locale";
 const products = Array.from({ length: 12 }, (_, i) => ({
 	selling_price: 100,
 	mrp: 200,
+	slug: "lemon-pickle",
 	discount: 50,
 	rating: 5,
 	ratingCount: 1000,

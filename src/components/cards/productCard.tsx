@@ -1,14 +1,17 @@
+"use client";
 import { Heart, Share2 } from "lucide-react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import { ReviewRating } from "../reviewRating";
+import { useRouter } from "next/navigation";
 
 export const ProductCard = ({
 	productDetail,
 }: {
 	productDetail: {
 		name: string;
+		slug: string;
 		description: string;
 		selling_price: number;
 		mrp: number;
@@ -18,8 +21,13 @@ export const ProductCard = ({
 		off: string;
 	};
 }) => {
+	const router = useRouter();
 	return (
-		<Card className="p-2 md:p-4 gap-2 border-none rounded-[8px] transition-transform transform hover:-translate-y-1">
+		<Card
+			className="p-2 md:p-4 gap-2 border-none rounded-[8px] transition-transform transform hover:-translate-y-1"
+			onClick={() => {
+				router.push(`/products/${productDetail.slug}`);
+			}}>
 			<div className="relative rounded-[4px]">
 				<Image
 					src={"/assets/home/demo_product.png"}
@@ -66,7 +74,11 @@ export const ProductCard = ({
 					</div>
 				</div>
 			</div>
-			<Button className="rounded-[4px]">
+			<Button
+				className="rounded-[4px]"
+				onClick={(e) => {
+					e.stopPropagation();
+				}}>
 				<span className="font-medium text-sm">ADD TO CART</span>
 			</Button>
 		</Card>

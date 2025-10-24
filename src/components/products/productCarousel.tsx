@@ -15,9 +15,11 @@ export default function ProductCarousel() {
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
 	const images = [
-		"/assets/home/demo_product.png",
-		"/assets/sliders/1.png",
-		"/assets/home/demo_product.png",
+		"/assets/product/1.jpg",
+		"/assets/product/2.jpg",
+		"/assets/product/3.jpg",
+		"/assets/product/4.jpg",
+		"/assets/product/5.jpg",
 	];
 
 	return (
@@ -64,12 +66,12 @@ export default function ProductCarousel() {
 			</div>
 
 			{/* Thumbnails */}
-			<div className="flex justify-between gap-3 ">
+			<div className="flex gap-3 overflow-x-auto scrollbar-default">
 				{images.map((thumb, index) => (
 					<button
 						key={index}
 						onClick={() => setCurrentImageIndex(index)}
-						className={`relative w-full aspect-square border-2 ${
+						className={`relative flex-shrink-0 w-1/3 aspect-square border-2 ${
 							currentImageIndex === index ? "border-primary" : "border-gray-200"
 						}`}>
 						<Image

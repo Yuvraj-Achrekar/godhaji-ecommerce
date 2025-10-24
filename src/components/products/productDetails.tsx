@@ -9,7 +9,7 @@ const ProductDetails = () => {
 	const [selectedWeight, setSelectedWeight] = useState("200gm");
 	return (
 		<section className="custom-container h-full lg:min-h-screen">
-			<div className="bg-gray-400 h-12"></div>
+			<div className="bg-gray-400 h-12" />
 			<div className="flex flex-col md:flex-row gap-6 w-full h-full max-w-6xl mx-auto py-10 px-4">
 				<div className="w-full md:w-[50%] h-full">
 					<ProductCarousel />

@@ -15,7 +15,7 @@ import { OrdersChartData } from "@/types/admin.types";
 const chartConfig = {
 	desktop: {
 		label: "Desktop",
-		color: "#2563eb",
+		color: "var(--chart-1)",
 	},
 	mobile: {
 		label: "Mobile",

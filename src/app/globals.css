@@ -216,3 +216,16 @@
 		@apply border-border outline-ring/50;
 	}
 }
+
+::-webkit-scrollbar {
+	display: none;
+}
+.scrollbar-default {
+	-ms-overflow-style: auto !important;
+	scrollbar-width: auto !important;
+	scrollbar-color: oklch(59.636% 0.10546 43.691) oklch(0.995 0.002 95);
+}
+.scrollbar-default::-webkit-scrollbar {
+	display: block !important;
+	color: aquamarine;
+}
