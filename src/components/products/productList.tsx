@@ -4,6 +4,9 @@ import { useState } from "react";
 import FilterSidebar from "./filterSidebar";
 import { ProductCard } from "../cards/productCard";
 import { ca } from "date-fns/locale";
+import { useAllProducts } from "@/hooks/queries";
+import { Skeleton } from "../ui/skeleton";
+import ProductCardSkeleton from "../skeleton/productCardSkeleton";
 
 const products = Array.from({ length: 12 }, (_, i) => ({
 	selling_price: 100,
@@ -22,6 +25,7 @@ const products = Array.from({ length: 12 }, (_, i) => ({
 
 export default function ProductList() {
 	const [sortBy, setSortBy] = useState("popularity");
+	const { data, isLoading, isError } = useAllProducts();
 
 	return (
 		<section className="bg-white py-12">
@@ -51,9 +55,13 @@ export default function ProductList() {
 							</div>
 						</div>
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-							{products.map((product, index) => (
-								<ProductCard key={index} productDetail={product} />
-							))}
+							{isLoading
+								? Array.from({ length: 6 }, (_, i) => (
+										<ProductCardSkeleton key={i} />
+								  ))
+								: data?.map((product, index) => (
+										<ProductCard key={index} productDetail={product} />
+								  ))}
 						</div>
 
 						{/* Load More Button */}

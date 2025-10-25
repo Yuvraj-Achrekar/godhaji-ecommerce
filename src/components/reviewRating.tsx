@@ -4,8 +4,8 @@ export const ReviewRating = ({
 	rating,
 	ratingCount,
 }: {
-	rating: number;
-	ratingCount: number;
+	rating: number | null;
+	ratingCount: number | null;
 }) => {
 	const formatCount = (count: number) => {
 		if (count >= 1000) {
@@ -16,13 +16,13 @@ export const ReviewRating = ({
 	return (
 		<div className="flex items-center gap-1 md:gap-2">
 			<span className="text-xs md:text-sm text-gray-800">
-				{rating.toFixed(2)}
+				{rating?.toFixed(1)}
 			</span>
 			<div className="flex my-2">
-				<StarRating rating={rating} size={16} />
+				<StarRating rating={rating!} size={16} />
 			</div>
 			<span className="text-xs md:text-sm text-gray-500">
-				({formatCount(ratingCount)})
+				({formatCount(ratingCount!)})
 			</span>
 		</div>
 	);

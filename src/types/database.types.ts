@@ -179,30 +179,45 @@ export type Database = {
       orders: {
         Row: {
           address_id: string | null
+          coupon_id: string | null
           created_at: string | null
           discount: number | null
           final_amount: number | null
           id: string
+          order_token: string | null
+          payment_id: string | null
+          payment_method: string | null
+          payment_status: string | null
           status: Database["public"]["Enums"]["status_type"] | null
           total_amount: number
           user_id: string | null
         }
         Insert: {
           address_id?: string | null
+          coupon_id?: string | null
           created_at?: string | null
           discount?: number | null
           final_amount?: number | null
           id?: string
+          order_token?: string | null
+          payment_id?: string | null
+          payment_method?: string | null
+          payment_status?: string | null
           status?: Database["public"]["Enums"]["status_type"] | null
           total_amount: number
           user_id?: string | null
         }
         Update: {
           address_id?: string | null
+          coupon_id?: string | null
           created_at?: string | null
           discount?: number | null
           final_amount?: number | null
           id?: string
+          order_token?: string | null
+          payment_id?: string | null
+          payment_method?: string | null
+          payment_status?: string | null
           status?: Database["public"]["Enums"]["status_type"] | null
           total_amount?: number
           user_id?: string | null
@@ -216,7 +231,88 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "orders_coupon_id_fkey"
+            columns: ["coupon_id"]
+            isOneToOne: false
+            referencedRelation: "coupons"
+            referencedColumns: ["id"]
+          },
+          {
             foreignKeyName: "orders_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      product_images: {
+        Row: {
+          created_at: string
+          id: string
+          image_url: string
+          is_primary: boolean
+          product_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          image_url: string
+          is_primary?: boolean
+          product_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          image_url?: string
+          is_primary?: boolean
+          product_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "product_images_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      product_reviews: {
+        Row: {
+          comment: string
+          created_at: string | null
+          id: string
+          product_id: string
+          rating: number
+          user_id: string
+        }
+        Insert: {
+          comment: string
+          created_at?: string | null
+          id?: string
+          product_id: string
+          rating: number
+          user_id: string
+        }
+        Update: {
+          comment?: string
+          created_at?: string | null
+          id?: string
+          product_id?: string
+          rating?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reviews_user_id_fkey"
             columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "profiles"
@@ -228,29 +324,35 @@ export type Database = {
         Row: {
           created_at: string
           id: string
-          mrp: number | null
-          name: string | null
-          product_id: string | null
-          quantity: number | null
-          selling_price: number | null
+          inventory_stock: number
+          is_default: boolean | null
+          mrp: number
+          name: string
+          product_id: string
+          selling_price: number
+          sku: string
         }
         Insert: {
           created_at?: string
           id?: string
-          mrp?: number | null
-          name?: string | null
-          product_id?: string | null
-          quantity?: number | null
-          selling_price?: number | null
+          inventory_stock: number
+          is_default?: boolean | null
+          mrp: number
+          name: string
+          product_id: string
+          selling_price: number
+          sku: string
         }
         Update: {
           created_at?: string
           id?: string
-          mrp?: number | null
-          name?: string | null
-          product_id?: string | null
-          quantity?: number | null
-          selling_price?: number | null
+          inventory_stock?: number
+          is_default?: boolean | null
+          mrp?: number
+          name?: string
+          product_id?: string
+          selling_price?: number
+          sku?: string
         }
         Relationships: [
           {
@@ -264,37 +366,37 @@ export type Database = {
       }
       products: {
         Row: {
+          average_rating: number | null
           category_id: string
           created_at: string
           description: string
           id: string
           ingredients: string[]
-          mrp: number
           name: string
-          selling_price: number
-          sku: string
+          slug: string
+          total_reviews: number | null
         }
         Insert: {
+          average_rating?: number | null
           category_id: string
           created_at?: string
           description: string
           id?: string
           ingredients: string[]
-          mrp: number
           name: string
-          selling_price: number
-          sku: string
+          slug: string
+          total_reviews?: number | null
         }
         Update: {
+          average_rating?: number | null
           category_id?: string
           created_at?: string
           description?: string
           id?: string
           ingredients?: string[]
-          mrp?: number
           name?: string
-          selling_price?: number
-          sku?: string
+          slug?: string
+          total_reviews?: number | null
         }
         Relationships: [
           {
@@ -339,57 +441,19 @@ export type Database = {
         }
         Relationships: []
       }
-      reviews: {
-        Row: {
-          comment: string | null
-          created_at: string | null
-          id: string
-          product_id: string | null
-          rating: number | null
-          user_id: string | null
-        }
-        Insert: {
-          comment?: string | null
-          created_at?: string | null
-          id?: string
-          product_id?: string | null
-          rating?: number | null
-          user_id?: string | null
-        }
-        Update: {
-          comment?: string | null
-          created_at?: string | null
-          id?: string
-          product_id?: string | null
-          rating?: number | null
-          user_id?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "reviews_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: false
-            referencedRelation: "products"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "reviews_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      get_table_counts: {
-        Args: Record<PropertyKey, never>
-        Returns: Json
+      get_orders_by_status: {
+        Args: { p_user_id?: string }
+        Returns: {
+          orders_count: number
+          status: Database["public"]["Enums"]["status_type"]
+        }[]
       }
+      get_table_counts: { Args: never; Returns: Json }
     }
     Enums: {
       status_type:
