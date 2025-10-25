@@ -8,21 +8,6 @@ import { useAllProducts } from "@/hooks/queries";
 import { Skeleton } from "../ui/skeleton";
 import ProductCardSkeleton from "../skeleton/productCardSkeleton";
 
-const products = Array.from({ length: 12 }, (_, i) => ({
-	selling_price: 100,
-	mrp: 200,
-	slug: "lemon-pickle",
-	discount: 50,
-	rating: 5,
-	ratingCount: 1000,
-	image: "/lemon-pickle-jar.jpg",
-	name: "Lemon Pickle",
-	description:
-		"Brighten up your plate with Godha Brother's lime pickle! Juicy, fresh and tangy taste.",
-	category: "Pickle",
-	off: "50%",
-}));
-
 export default function ProductList() {
 	const [sortBy, setSortBy] = useState("popularity");
 	const { data, isLoading, isError } = useAllProducts();

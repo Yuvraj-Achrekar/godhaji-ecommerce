@@ -10,24 +10,29 @@ import {
 	Plus,
 } from "lucide-react";
 import Image from "next/image";
+import { toast } from "sonner";
+import { handleCopyLink } from "@/lib/helpers";
 
-export default function ProductCarousel() {
+export default function ProductCarousel({
+	images = [],
+	discount,
+}: {
+	images:
+		| {
+				image_url: string;
+				is_primary: boolean;
+		  }[]
+		| undefined;
+	discount: number;
+}) {
 	const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-	const images = [
-		"/assets/product/1.jpg",
-		"/assets/product/2.jpg",
-		"/assets/product/3.jpg",
-		"/assets/product/4.jpg",
-		"/assets/product/5.jpg",
-	];
 
 	return (
 		<div className="flex flex-col gap-4 w-full h-full">
 			{/* Main Image */}
 			<div className="relative bg-orange-50 w-full overflow-hidden aspect-square md:h-[460px] ">
 				<Image
-					src={images[currentImageIndex] || "/placeholder.svg"}
+					src={images[currentImageIndex].image_url || "/placeholder.svg"}
 					alt="Product"
 					fill
 					className="object-cover"
@@ -35,14 +40,16 @@ export default function ProductCarousel() {
 
 				{/* Discount Badge */}
 				<div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-					50% off
+					{discount}% off
 				</div>
 
 				{/* Action Buttons */}
 				<button className="absolute top-4 right-4 p-2 bg-white rounded-full hover:bg-gray-100">
 					<Heart className="w-5 h-5 text-gray-700" />
 				</button>
-				<button className="absolute top-14 right-4 p-2 bg-white rounded-full hover:bg-gray-100">
+				<button
+					className="absolute top-14 right-4 p-2 bg-white rounded-full hover:bg-gray-100"
+					onClick={handleCopyLink}>
 					<Share2 className="w-5 h-5 text-gray-700" />
 				</button>
 
@@ -75,7 +82,7 @@ export default function ProductCarousel() {
 							currentImageIndex === index ? "border-primary" : "border-gray-200"
 						}`}>
 						<Image
-							src={thumb || "/placeholder.svg"}
+							src={thumb.image_url || "/placeholder.svg"}
 							alt={`Thumbnail ${index + 1}`}
 							fill
 							className="object-cover"

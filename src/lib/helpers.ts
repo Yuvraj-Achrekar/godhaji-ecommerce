@@ -1,3 +1,5 @@
+import { toast } from "sonner";
+
 export const breadcrumbsRoutes = (route: string) => {
 	switch (route) {
 		case "/admin/dashboard":
@@ -76,3 +78,37 @@ export const breadcrumbsRoutes = (route: string) => {
 			];
 	}
 };
+
+
+
+export const calculateDiscount = (maxPrice:number,offeredPrice:number):number => {
+	return Number(((maxPrice - offeredPrice) * 100 / maxPrice).toFixed(0));
+}
+
+export const handleCopyLink = async () => {
+	if (typeof window === "undefined") return; // do not run on the server
+		const url = window.location.href; 
+		try {
+			// ✅ Modern API (works on most modern mobile browsers)
+			if (navigator.clipboard && window.isSecureContext) {
+				await navigator.clipboard.writeText(url);
+				toast.success("Link copied to clipboard!");
+				return;
+			}
+
+			// ✅ Fallback for Safari / older browsers
+			const textArea = document.createElement("textarea");
+			textArea.value = url;
+			textArea.style.position = "fixed"; // avoid scrolling to bottom
+			textArea.style.opacity = "0";
+			document.body.appendChild(textArea);
+			textArea.focus();
+			textArea.select();
+			document.execCommand("copy");
+			document.body.removeChild(textArea);
+			toast.success("Link copied to clipboard!");
+		} catch (err) {
+			console.error("Failed to copy:", err);
+			toast.error("Could not copy link. Please copy manually.");
+		}
+	};

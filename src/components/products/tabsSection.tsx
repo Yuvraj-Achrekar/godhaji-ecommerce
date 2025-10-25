@@ -1,18 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import {
-	useParams,
-	usePathname,
-	useRouter,
-	useSearchParams,
-} from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import IngredientsSection from "./ingredientsSection";
 import ReviewsSections from "./reviewsSections";
 import StorageTipsSection from "./storageTipsSection";
 
 const validTabs = ["ingredients", "storage tips", "reviews"];
-const TabsSection = () => {
+const TabsSection = ({
+	ingredientsList,
+	isLoading,
+}: {
+	ingredientsList: string[] | undefined;
+	isLoading: boolean;
+}) => {
 	const searchParams = useSearchParams();
 	const pathname = usePathname();
 	const router = useRouter();
@@ -58,16 +59,7 @@ const TabsSection = () => {
 			<div className="w-full">
 				{/* Ingredients */}
 				{activeTab === "ingredients" && (
-					<IngredientsSection
-						ingredientsList={[
-							"Green Chilly Peices",
-							"Salt",
-							"Mustard Oil",
-							"Turmeric Powder",
-							"Lemon Juice",
-							"Spices",
-						]}
-					/>
+					<IngredientsSection ingredientsList={ingredientsList!} />
 				)}
 				{/* Storage Tips */}
 				{activeTab === "storage tips" && <StorageTipsSection />}
